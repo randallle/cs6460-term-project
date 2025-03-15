@@ -1,0 +1,84 @@
+{
+	"recipes": [
+		{
+			"id": "1",
+			"title": "Spaghetti Carbonara",
+			"image": "https://example.com/spaghetti.jpg",
+			"description": "A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.",
+			"time": 25,
+			"vegan": false
+		},
+		{
+			"id": "2",
+			"title": "Vegan Buddha Bowl",
+			"image": "https://example.com/buddha-bowl.jpg",
+			"description": "A colorful bowl packed with quinoa, chickpeas, avocado, and fresh veggies.",
+			"time": 20,
+			"vegan": true
+		},
+		{
+			"id": "3",
+			"title": "Chicken Tikka Masala",
+			"image": "https://example.com/tikka-masala.jpg",
+			"description": "A creamy, spiced tomato-based curry with grilled chicken pieces.",
+			"time": 40,
+			"vegan": false
+		},
+		{
+			"id": "4",
+			"title": "Avocado Toast",
+			"image": "https://example.com/avocado-toast.jpg",
+			"description": "A simple yet delicious toast topped with mashed avocado, lemon, and chili flakes.",
+			"time": 10,
+			"vegan": true
+		},
+		{
+			"id": "5",
+			"title": "Beef Stroganoff",
+			"image": "https://example.com/beef-stroganoff.jpg",
+			"description": "A rich and creamy dish with sautéed beef and mushrooms in a savory sauce.",
+			"time": 35,
+			"vegan": false
+		},
+		{
+			"id": "6",
+			"title": "Vegan Lentil Soup",
+			"image": "https://example.com/lentil-soup.jpg",
+			"description": "A hearty soup made with lentils, carrots, and celery in a flavorful broth.",
+			"time": 30,
+			"vegan": true
+		},
+		{
+			"id": "7",
+			"title": "Margherita Pizza",
+			"image": "https://example.com/margherita-pizza.jpg",
+			"description": "A traditional Italian pizza topped with fresh mozzarella, basil, and tomato sauce.",
+			"time": 50,
+			"vegan": false
+		},
+		{
+			"id": "8",
+			"title": "Vegan Tofu Stir-Fry",
+			"image": "https://example.com/tofu-stirfry.jpg",
+			"description": "A quick stir-fry with tofu, bell peppers, and a savory soy-ginger sauce.",
+			"time": 15,
+			"vegan": true
+		},
+		{
+			"id": "9",
+			"title": "Grilled Salmon",
+			"image": "https://example.com/grilled-salmon.jpg",
+			"description": "A flavorful, grilled salmon fillet with a lemon and herb marinade.",
+			"time": 25,
+			"vegan": false
+		},
+		{
+			"id": "10",
+			"title": "Vegan Chocolate Cake",
+			"image": "https://example.com/chocolate-cake.jpg",
+			"description": "A moist and rich chocolate cake made without dairy or eggs.",
+			"time": 60,
+			"vegan": true
+		}
+	]
+}
