@@ -8,8 +8,8 @@ interface MatrixProps {
 export default function Matrix({ items }: MatrixProps) {
 	return (
 		<div
-			className={`w-fit gap-4 grid ${
-				items.length === 3 ? "grid-cols-2" : "grid-cols-3"
+			className={`w-fit gap-4 grid grid-cols-${
+				items.length === 3 ? "2" : "3"
 			}`}
 		>
 			{items.map((item, index) => (
@@ -22,7 +22,7 @@ export default function Matrix({ items }: MatrixProps) {
 					/>
 				</div>
 			))}
-			<div className="bg-green-400 w-50">
+			<div className="w-50 h-50 border relative flex items-center justify-center">
 				<h1>?</h1>
 			</div>
 		</div>
