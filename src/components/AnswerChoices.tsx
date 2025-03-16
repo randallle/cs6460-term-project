@@ -3,15 +3,15 @@
 import { Button } from "./ui/button";
 import Image from "next/image";
 
-interface AnswerChoicesGridProps {
+interface AnswerChoicesProps {
 	choices: string[];
 	onSelect: (choice: string) => void;
 }
 
-export default function AnswerChoicesGrid({
+export default function AnswerChoices({
 	choices,
 	onSelect,
-}: AnswerChoicesGridProps) {
+}: AnswerChoicesProps) {
 	return (
 		<div className="grid grid-cols-2 gap-4 place-items-center bg-red-400 p-4">
 			{choices.map((choice, index) => (
@@ -23,6 +23,7 @@ export default function AnswerChoicesGrid({
 							? "justify-self-end"
 							: "justify-self-start"
 					}`}
+					variant="outline"
 				>
 					<Image
 						src={`/sample-problem/${choice}`}
