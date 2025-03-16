@@ -18,7 +18,7 @@ export default async function GamePreview() {
 
 	return (
 		<main>
-			<Game />
+			<Game problem={problems[0]} />
 		</main>
 	);
 }

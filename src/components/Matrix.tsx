@@ -15,7 +15,7 @@ export default function Matrix({ items }: MatrixProps) {
 			{items.map((item, index) => (
 				<div key={index} className="w-50 h-50 border relative">
 					<Image
-						src={`/sample-problem/${item}`}
+						src={`/sample-problems/problem01/${item}`}
 						alt={item}
 						className="object-contain"
 						fill
