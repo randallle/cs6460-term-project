@@ -11,5 +11,15 @@ export default function AnswerChoicesGridPreview() {
 		"5.png",
 		"6.png",
 	];
-	return <AnswerChoicesGrid choices={choiceFilenames} onSelect={() => {}} />;
+
+	return (
+		<main>
+			<AnswerChoicesGrid
+				choices={choiceFilenames}
+				onSelect={() => {
+					console.log("Button clicked!");
+				}}
+			/>
+		</main>
+	);
 }
