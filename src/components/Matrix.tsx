@@ -6,24 +6,28 @@ interface MatrixProps {
 }
 
 export default function Matrix({ items }: MatrixProps) {
+	const gridStyle = {
+		display: "grid",
+		gridTemplateColumns: `repeat(${
+			items.length === 3 ? "2" : "3"
+		}, minmax(0, 1fr))`,
+	};
+
 	return (
-		<div
-			className={`grid grid-cols-${
-				items.length === 3 ? "2" : "3"
-			} place-items-center bg-blue-400`}
-		>
-			{items.map((item) => (
-				<Image
-					src={`/sample-problem/${item}`}
-					width={100}
-					height={100}
-					alt={item}
-					// className="w-full"
-					key={item}
-				/>
+		<div className="w-fit gap-4" style={gridStyle}>
+			{items.map((item, index) => (
+				<div key={index} className="w-50 h-50 border relative">
+					<Image
+						src={`/sample-problem/${item}`}
+						alt={item}
+						className="object-contain"
+						fill
+					/>
+				</div>
 			))}
+			<div className="bg-green-400 w-50">
+				<h1>?</h1>
+			</div>
 		</div>
 	);
-
-	// return <p>Hello world!</p>;
 }
