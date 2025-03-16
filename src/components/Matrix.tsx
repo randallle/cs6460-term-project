@@ -6,15 +6,12 @@ interface MatrixProps {
 }
 
 export default function Matrix({ items }: MatrixProps) {
-	const gridStyle = {
-		display: "grid",
-		gridTemplateColumns: `repeat(${
-			items.length === 3 ? "2" : "3"
-		}, minmax(0, 1fr))`,
-	};
-
 	return (
-		<div className="w-fit gap-4" style={gridStyle}>
+		<div
+			className={`w-fit gap-4 grid ${
+				items.length === 3 ? "grid-cols-2" : "grid-cols-3"
+			}`}
+		>
 			{items.map((item, index) => (
 				<div key={index} className="w-50 h-50 border relative">
 					<Image
