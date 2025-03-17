@@ -23,7 +23,11 @@ export default function Board({ problem }: BoardProps) {
 	return (
 		<div className="grid grid-cols-2">
 			<div>
-				<Matrix items={matrix} />
+				<Matrix
+					items={matrix}
+					choices={choices}
+					selectedAnswer={selectedAnswer}
+				/>
 			</div>
 			<div className="flex justify-end">
 				<div>
