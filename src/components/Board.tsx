@@ -2,7 +2,7 @@
 
 import Matrix from "./Matrix";
 import AnswerChoicesGrid from "@/components/AnswerChoicesGrid";
-import { useState } from "react";
+// import { useState } from "react";
 
 interface Problem {
 	title: string;
@@ -18,10 +18,7 @@ interface BoardProps {
 
 export default function Board({ problem }: BoardProps) {
 	const { matrix, choices } = problem;
-	const { selectedAnswer, setSelectedAnswer } = useState(-1);
-
-	// handle selection
-	function handleSelection() {}
+	// const { selectedAnswer, setSelectedAnswer } = useState(-1);
 
 	return (
 		<div className="grid grid-cols-2">
@@ -31,10 +28,7 @@ export default function Board({ problem }: BoardProps) {
 			<div className="flex justify-end">
 				<div>
 					<h2>Select an answer</h2>
-					<AnswerChoicesGrid
-						choices={choices}
-						onSelect={handleSelection}
-					/>
+					<AnswerChoicesGrid choices={choices} />
 				</div>
 			</div>
 		</div>

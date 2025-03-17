@@ -15,7 +15,7 @@ const getProblems = async (): Promise<Problem[]> => {
 
 export default async function BoardPreview() {
 	const problems = await getProblems();
-
+	console.log(problems[1]);
 	return (
 		<main>
 			<Board problem={problems[1]} />
