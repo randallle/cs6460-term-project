@@ -1,7 +1,7 @@
 "use client";
 
 import Matrix from "./Matrix";
-import AnswerChoices from "./AnswerChoices";
+import AnswerChoicesGrid from "@/components/AnswerChoicesGrid";
 import { useState } from "react";
 
 interface Problem {
@@ -26,12 +26,12 @@ export default function Board({ problem }: BoardProps) {
 	return (
 		<div className="grid grid-cols-2">
 			<div>
-				<Matrix items={matrix} selection={selectedAnswer} />
+				<Matrix items={matrix} />
 			</div>
 			<div className="flex justify-end">
 				<div>
 					<h2>Select an answer</h2>
-					<AnswerChoices
+					<AnswerChoicesGrid
 						choices={choices}
 						onSelect={handleSelection}
 					/>
