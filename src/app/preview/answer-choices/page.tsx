@@ -7,12 +7,7 @@ export default function AnswerChoicesGridPreview() {
 
 	return (
 		<main>
-			<AnswerChoicesGrid
-				choices={filenames}
-				onSelect={() => {
-					console.log("Button clicked!");
-				}}
-			/>
+			<AnswerChoicesGrid choices={filenames} />
 		</main>
 	);
 }

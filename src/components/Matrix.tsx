@@ -19,6 +19,7 @@ export default function Matrix({ items }: MatrixProps) {
 						alt={item}
 						className="object-contain"
 						fill
+						sizes="(max-width: 768px) 50vw, 33vw"
 					/>
 				</div>
 			))}
