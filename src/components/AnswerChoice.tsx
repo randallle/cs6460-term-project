@@ -17,19 +17,16 @@ export default function AnswerChoice({
 	index,
 }: AnswerChoiceProps) {
 	return (
-		<div
-			key={filename}
-			className={`w-40 h-40 border relative ${
-				selectedAnswer === index
-					? "shadow-[0_0_15px_3px] shadow-green-300"
-					: ""
-			}`}
-		>
+		<div key={filename} className="w-40 h-40 relative">
 			<Button
 				onClick={() => {
 					onSelect();
 				}}
-				className="aspect-square p-2 h-40 w-40 relative"
+				className={`aspect-square p-2 h-40 w-40 relative ${
+					selectedAnswer === index
+						? "shadow-[0_0_15px_3px] shadow-green-300"
+						: ""
+				}`}
 				variant="outline"
 			>
 				<Image
