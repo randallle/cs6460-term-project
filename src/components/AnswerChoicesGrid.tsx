@@ -23,7 +23,11 @@ export default function AnswerChoicesGrid({
 					filename={choice}
 					selectedAnswer={selectedAnswer}
 					onSelect={() => {
-						setSelectedAnswer(index);
+						if (index === selectedAnswer) {
+							setSelectedAnswer(-1);
+						} else {
+							setSelectedAnswer(index);
+						}
 					}}
 					index={index}
 				/>
