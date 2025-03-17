@@ -12,20 +12,31 @@ interface Problem {
 	answer: number;
 }
 
-interface GameProps {
+interface BoardProps {
 	problem: Problem;
 }
 
-export default function Game({ problem }: GameProps) {
+export default function Board({ problem }: BoardProps) {
 	const { matrix, choices } = problem;
 	const { selectedAnswer, setSelectedAnswer } = useState(-1);
 
 	// handle selection
+	function handleSelection() {}
 
 	return (
-		<div>
-			<Matrix items={matrix} />
-			<AnswerChoices choices={choices} onSelect={() => {}} />
+		<div className="grid grid-cols-2">
+			<div>
+				<Matrix items={matrix} selection={selectedAnswer} />
+			</div>
+			<div className="flex justify-end">
+				<div>
+					<h2>Select an answer</h2>
+					<AnswerChoices
+						choices={choices}
+						onSelect={handleSelection}
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }

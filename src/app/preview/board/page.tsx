@@ -1,4 +1,4 @@
-import Game from "@/components/Game";
+import Board from "@/components/Board";
 
 interface Problem {
 	title: string;
@@ -13,12 +13,12 @@ const getProblems = async (): Promise<Problem[]> => {
 	return result.json();
 };
 
-export default async function GamePreview() {
+export default async function BoardPreview() {
 	const problems = await getProblems();
 
 	return (
 		<main>
-			<Game problem={problems[0]} />
+			<Board problem={problems[1]} />
 		</main>
 	);
 }
