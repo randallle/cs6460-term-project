@@ -34,6 +34,7 @@ export default function AnswerChoice({
 					width={150}
 					height={150}
 					alt={filename}
+					draggable="false"
 				/>
 			</Button>
 		</div>

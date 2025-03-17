@@ -36,6 +36,7 @@ export default function Matrix({
 						className="object-contain"
 						fill
 						sizes="(max-width: 768px) 50vw, 33vw"
+						draggable="false"
 					/>
 				</div>
 			))}
@@ -51,6 +52,7 @@ export default function Matrix({
 						className="object-contain"
 						fill
 						sizes="(max-width: 768px) 50vw, 33vw"
+						draggable="false"
 					/>
 				</div>
 			)}
