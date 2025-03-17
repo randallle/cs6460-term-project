@@ -18,7 +18,7 @@ interface BoardProps {
 
 export default function Board({ problem }: BoardProps) {
 	const { matrix, choices } = problem;
-	const { selectedAnswer, setSelectedAnswer } = useState(-1);
+	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	return (
 		<div className="grid grid-cols-2">
@@ -28,7 +28,11 @@ export default function Board({ problem }: BoardProps) {
 			<div className="flex justify-end">
 				<div>
 					<h2>Select an answer</h2>
-					<AnswerChoicesGrid choices={choices} />
+					<AnswerChoicesGrid
+						choices={choices}
+						selectedAnswer={selectedAnswer}
+						setSelectedAnswer={setSelectedAnswer}
+					/>
 				</div>
 			</div>
 		</div>

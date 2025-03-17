@@ -6,16 +6,26 @@ import AnswerChoice from "./AnswerChoice";
 
 interface AnswerChoicesGridProps {
 	choices: string[];
+	selectedAnswer: number;
+	setSelectedAnswer: (choice: number) => void;
 }
 
-export default function AnswerChoicesGrid({ choices }: AnswerChoicesGridProps) {
+export default function AnswerChoicesGrid({
+	choices,
+	selectedAnswer,
+	setSelectedAnswer,
+}: AnswerChoicesGridProps) {
 	return (
 		<div className="w-fit h-fit gap-4 grid grid-cols-2">
-			{choices.map((choice) => (
+			{choices.map((choice, index) => (
 				<AnswerChoice
 					key={choice}
 					filename={choice}
-					onSelect={() => {}}
+					selectedAnswer={selectedAnswer}
+					onSelect={() => {
+						setSelectedAnswer(index);
+					}}
+					index={index}
 				/>
 			))}
 		</div>

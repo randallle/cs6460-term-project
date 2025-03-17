@@ -5,15 +5,26 @@ import Image from "next/image";
 
 interface AnswerChoiceProps {
 	filename: string;
+	selectedAnswer: number;
 	onSelect: () => void;
+	index: number;
 }
 
 export default function AnswerChoice({
 	filename,
+	selectedAnswer,
 	onSelect,
+	index,
 }: AnswerChoiceProps) {
 	return (
-		<div key={filename} className="w-40 h-40 border relative">
+		<div
+			key={filename}
+			className={`w-40 h-40 border relative ${
+				selectedAnswer === index
+					? "shadow-[0_0_15px_3px] shadow-green-300"
+					: ""
+			}`}
+		>
 			<Button
 				onClick={() => {
 					onSelect();
