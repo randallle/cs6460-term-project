@@ -16,7 +16,6 @@ export default function AnswerChoice({
 		<div key={filename} className="w-40 h-40 border relative">
 			<Button
 				onClick={() => {
-					console.log(`${filename} clicked`);
 					onSelect();
 				}}
 				className="aspect-square p-2 h-40 w-40 relative"
@@ -24,10 +23,9 @@ export default function AnswerChoice({
 			>
 				<Image
 					src={`/sample-problems/problem02/${filename}`}
-					fill
-					sizes="(max-width: 768px) 50vw, 33vw"
+					width={150}
+					height={150}
 					alt={filename}
-					className="w-full"
 				/>
 			</Button>
 		</div>
