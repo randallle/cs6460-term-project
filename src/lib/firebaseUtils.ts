@@ -2,6 +2,13 @@ import { db, storage } from "./firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 
+interface ProblemData {
+	id: string;
+	description: string;
+	answer: number;
+	title: string;
+}
+
 export async function fetchRandomProblemByDifficulty(difficulty: string) {
 	const problemsRef = collection(db, "problems");
 
@@ -25,11 +32,21 @@ export async function fetchRandomProblemByDifficulty(difficulty: string) {
 	const matrixImages = await fetchImagesFromStorage(
 		`problems/${problemData.id}/matrix`
 	);
+	for (const image of matrixImages) {
+		console.log(image);
+	}
 	const choiceImages = await fetchImagesFromStorage(
 		`problems/${problemData.id}/choices`
 	);
+	for (const image of choiceImages) {
+		console.log(image);
+	}
 
-	return { ...problemData, matrix: matrixImages, choices: choiceImages };
+	return {
+		...(problemData as ProblemData),
+		matrix: matrixImages,
+		choices: choiceImages,
+	};
 }
 
 async function fetchImagesFromStorage(folderPath: string) {

@@ -1,4 +1,5 @@
 import Board from "@/components/Board";
+import { fetchRandomProblemByDifficulty } from "@/lib/firebaseUtils";
 
 interface Problem {
 	title: string;
@@ -8,16 +9,26 @@ interface Problem {
 	answer: number;
 }
 
-const getProblems = async (): Promise<Problem[]> => {
-	const result = await fetch("http://localhost:4000/problems");
-	return result.json();
-};
-
 export default async function BoardPreview() {
-	const problems = await getProblems();
+	const {
+		// id: problemId,
+		title,
+		description,
+		matrix,
+		choices,
+		answer,
+	} = await fetchRandomProblemByDifficulty("B");
+	const problem: Problem = {
+		title: title,
+		description: description,
+		matrix: matrix,
+		choices: choices,
+		answer: answer,
+	};
+
 	return (
 		<main>
-			<Board problem={problems[1]} />
+			<Board problem={problem} />
 		</main>
 	);
 }

@@ -31,7 +31,7 @@ export default function Matrix({
 			{items.map((item, index) => (
 				<div key={index} className="w-40 h-40 border relative">
 					<Image
-						src={`/sample-problems/problem02/${item}`}
+						src={item}
 						alt={item}
 						className="object-contain"
 						fill
@@ -47,7 +47,7 @@ export default function Matrix({
 					<div className="absolute inset-0 animate-pulse shadow-[0_0_15px_3px] shadow-yellow-300"></div>
 
 					<Image
-						src={`/sample-problems/problem02/${choices[selectedAnswer]}`}
+						src={choices[selectedAnswer]}
 						alt={choices[selectedAnswer]}
 						className="object-contain"
 						fill

@@ -30,7 +30,7 @@ export default function AnswerChoice({
 				variant="outline"
 			>
 				<Image
-					src={`/sample-problems/problem02/${filename}`}
+					src={filename}
 					width={150}
 					height={150}
 					alt={filename}
