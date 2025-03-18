@@ -7,7 +7,11 @@ export default function AnswerChoicesGridPreview() {
 
 	return (
 		<main>
-			<AnswerChoicesGrid choices={filenames} />
+			<AnswerChoicesGrid
+				choices={filenames}
+				selectedAnswer={-1}
+				setSelectedAnswer={() => {}}
+			/>
 		</main>
 	);
 }
