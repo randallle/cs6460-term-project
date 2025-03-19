@@ -32,15 +32,10 @@ export async function fetchRandomProblemByDifficulty(difficulty: string) {
 	const matrixImages = await fetchImagesFromStorage(
 		`problems/${problemData.id}/matrix`
 	);
-	for (const image of matrixImages) {
-		console.log(image);
-	}
+
 	const choiceImages = await fetchImagesFromStorage(
 		`problems/${problemData.id}/choices`
 	);
-	for (const image of choiceImages) {
-		console.log(image);
-	}
 
 	return {
 		...(problemData as ProblemData),
