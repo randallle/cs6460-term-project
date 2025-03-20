@@ -1,11 +1,11 @@
 "use client";
 
-import Survey from "@/components/Survey";
+import FormExample from "@/components/FormExample";
 
 export default function SurveyPreview() {
 	return (
 		<main>
-			<Survey />
+			<FormExample />
 		</main>
 	);
 }
