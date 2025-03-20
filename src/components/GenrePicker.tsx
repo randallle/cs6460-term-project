@@ -23,18 +23,28 @@ export default function GenrePicker({ genres }: GenrePickerProps) {
 	};
 
 	const handleNewGenreSubmit = () => {
-		if (newGenre.trim()) {
-			if (!localGenres.includes(newGenre.trim())) {
-				setLocalGenres((prev) => [...prev, newGenre.trim()]);
+		const genreToAdd = toTitleCase(newGenre.trim());
+		if (genreToAdd) {
+			if (!localGenres.includes(genreToAdd)) {
+				setLocalGenres((prev) => [...prev, genreToAdd]);
 			}
-			setNewGenre("");
+
 			setPressedStates((prev) => ({
 				...prev,
-				[newGenre]: true,
+				[genreToAdd]: true,
 			}));
 		}
+		setNewGenre("");
 		setIsAddingNew(false);
 	};
+
+	function toTitleCase(str: string) {
+		return str
+			.toLowerCase()
+			.split(" ") // Split into words
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
+			.join(" "); // Join back into a string
+	}
 
 	return (
 		<div className="flex flex-wrap gap-2">
@@ -66,6 +76,7 @@ export default function GenrePicker({ genres }: GenrePickerProps) {
 					<input
 						type="text"
 						value={newGenre}
+						maxLength={15}
 						onChange={(e) => setNewGenre(e.target.value)}
 						onKeyDown={(e) => {
 							if (e.key === "Enter") {
@@ -74,10 +85,14 @@ export default function GenrePicker({ genres }: GenrePickerProps) {
 								setIsAddingNew(false);
 							}
 						}}
-						className="focus:outline-none"
+						className="focus:outline-none w-28"
 						placeholder="Enter a genre"
 						autoFocus
 						onClick={(e) => e.stopPropagation()}
+						onBlur={() => {
+							setIsAddingNew(false);
+							setNewGenre("");
+						}}
 					/>
 				</Toggle>
 			)}
