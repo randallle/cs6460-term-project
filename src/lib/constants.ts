@@ -1,4 +1,4 @@
-const AGE_BUCKETS = [
+const AGE_GROUPS = [
 	{ label: "Under 18", value: "Under 18" },
 	{ label: "18-24", value: "18-24" },
 	{ label: "25-34", value: "25-34" },
@@ -45,4 +45,4 @@ const YESNO = [
 	{ label: "No", value: "No" },
 ];
 
-export { AGE_BUCKETS, GENDERS, EDUCATION, YESNO };
+export { AGE_GROUPS, GENDERS, EDUCATION, YESNO };
