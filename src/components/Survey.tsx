@@ -38,7 +38,7 @@ const formSchema = z.object({
 	rpm: z.enum(YESNO),
 	musicFrequency: z.enum(FREQUENCIES),
 	musicWorkStudy: z.enum(YESNO),
-	// genres: z.enum(),
+	genres: z.array(z.string()).optional(),
 	musicalInstrument: z.enum(YESNO),
 });
 
@@ -254,7 +254,7 @@ export default function Survey() {
 						}}
 					/>
 
-					<FormField
+					{/* <FormField
 						control={form.control}
 						name="genres"
 						render={({ field }) => {
@@ -269,7 +269,7 @@ export default function Survey() {
 								</FormItem>
 							);
 						}}
-					/>
+					/> */}
 
 					<FormField
 						control={form.control}
