@@ -12,9 +12,14 @@ import {
 	FormControl,
 } from "@/components/ui/form";
 
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { GENDERS } from "@/lib/constants";
+import {
+	AGE_GROUPS,
+	GENDERS,
+	EDUCATION,
+	YESNO,
+	FREQUENCIES,
+} from "@/lib/constants";
 import {
 	Select,
 	SelectContent,
@@ -24,16 +29,16 @@ import {
 } from "@/components/ui/select";
 
 const formSchema = z.object({
-	age: z.string(),
+	age: z.enum(AGE_GROUPS),
 	gender: z.enum(GENDERS),
+	education: z.enum(EDUCATION),
+	rpm: z.enum(YESNO),
+	musicFrequency: z.enum(FREQUENCIES),
 });
 
 export default function Survey() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			age: "",
-		},
 	});
 
 	const handleSubmit = () => {};
@@ -45,6 +50,7 @@ export default function Survey() {
 					onSubmit={form.handleSubmit(handleSubmit)}
 					className="max-w-md w-full flex flex-col gap-4"
 				>
+					<h2>Demographics & General Information</h2>
 					<FormField
 						control={form.control}
 						name="age"
@@ -52,13 +58,24 @@ export default function Survey() {
 							return (
 								<FormItem>
 									<FormLabel>Age</FormLabel>
-									<FormControl>
-										<Input
-											placeholder="Age"
-											type="age"
-											{...field}
-										/>
-									</FormControl>
+									<Select onValueChange={field.onChange}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select an age group"></SelectValue>
+											</SelectTrigger>
+										</FormControl>
+
+										<SelectContent>
+											{AGE_GROUPS.map((ageGroup) => (
+												<SelectItem
+													key={ageGroup}
+													value={ageGroup}
+												>
+													{ageGroup}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
 									<FormMessage />
 								</FormItem>
 							);
@@ -95,6 +112,106 @@ export default function Survey() {
 							);
 						}}
 					/>
+
+					<FormField
+						control={form.control}
+						name="education"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>Education</FormLabel>
+									<Select onValueChange={field.onChange}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select an education level"></SelectValue>
+											</SelectTrigger>
+										</FormControl>
+
+										<SelectContent>
+											{EDUCATION.map((level) => (
+												<SelectItem
+													key={level}
+													value={level}
+												>
+													{level}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+
+					<FormField
+						control={form.control}
+						name="rpm"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										Have you taken a Raven&apos;s
+										Progressive Matrices test before?
+									</FormLabel>
+									<Select onValueChange={field.onChange}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select an option"></SelectValue>
+											</SelectTrigger>
+										</FormControl>
+
+										<SelectContent>
+											{YESNO.map((option) => (
+												<SelectItem
+													key={option}
+													value={option}
+												>
+													{option}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+
+					<h2>Musical Background & Preferences</h2>
+					<FormField
+						control={form.control}
+						name="musicFrequency"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										How often do you listen to music?
+									</FormLabel>
+									<Select onValueChange={field.onChange}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select an option"></SelectValue>
+											</SelectTrigger>
+										</FormControl>
+
+										<SelectContent>
+											{YESNO.map((option) => (
+												<SelectItem
+													key={option}
+													value={option}
+												>
+													{option}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+
 					<Button type="submit" className="w-full">
 						Submit
 					</Button>
