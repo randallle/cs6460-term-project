@@ -272,6 +272,7 @@ export default function Survey() {
 										</div>
 										<Button
 											variant="secondary"
+											size="sm"
 											onClick={(e) => {
 												e.preventDefault(); // Prevent form submission
 												form.setValue("genres", []);
