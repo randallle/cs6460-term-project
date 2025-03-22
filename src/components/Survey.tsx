@@ -28,7 +28,7 @@ import {
 	SelectValue,
 	SelectItem,
 } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import GenrePicker from "@/components/GenrePicker";
 
@@ -265,7 +265,19 @@ export default function Survey() {
 										Select your favorite music genres, if
 										any:
 									</FormLabel>
-									<GenrePicker />
+									<FormControl>
+										<GenrePicker
+											genres={[
+												"Pop",
+												"Rock",
+												"Jazz",
+												"Hip-Hop",
+												"Classical",
+											]} // Add any initial options you want
+											selectedGenres={field.value ?? []}
+											setSelectedGenres={field.onChange}
+										/>
+									</FormControl>
 									<FormMessage />
 								</FormItem>
 							);
