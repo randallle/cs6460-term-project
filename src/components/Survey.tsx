@@ -19,6 +19,7 @@ import {
 	EDUCATION,
 	YESNO,
 	FREQUENCIES,
+	DEFAULT_GENRES,
 } from "@/lib/constants";
 import {
 	Select,

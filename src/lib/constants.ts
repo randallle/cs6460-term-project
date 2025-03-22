@@ -25,4 +25,17 @@ const YESNO = ["Yes", "No"] as const;
 
 const FREQUENCIES = ["Rarely", "Occasionally", "Daily", "Constantly"] as const;
 
-export { AGE_GROUPS, GENDERS, EDUCATION, YESNO, FREQUENCIES };
+const DEFAULT_GENRES = [
+	"Rock",
+	"Pop",
+	"Hip Hop",
+	"Jazz",
+	"Classical",
+	"Electronic",
+	"R&B",
+	"Country",
+	"Metal",
+	"Folk",
+];
+
+export { AGE_GROUPS, GENDERS, EDUCATION, YESNO, FREQUENCIES, DEFAULT_GENRES };

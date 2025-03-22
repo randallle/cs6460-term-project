@@ -7,22 +7,7 @@ interface GenrePickerProps {
 	genres: string[];
 }
 
-const DEFAULT_GENRES = [
-	"Rock",
-	"Pop",
-	"Hip Hop",
-	"Jazz",
-	"Classical",
-	"Electronic",
-	"R&B",
-	"Country",
-	"Metal",
-	"Folk",
-];
-
-export default function GenrePicker({
-	genres = DEFAULT_GENRES,
-}: GenrePickerProps) {
+export default function GenrePicker({ genres }: GenrePickerProps) {
 	const [localGenres, setLocalGenres] = useState<string[]>(genres);
 	const [isAddingNew, setIsAddingNew] = useState(false);
 	const [newGenre, setNewGenre] = useState("");
