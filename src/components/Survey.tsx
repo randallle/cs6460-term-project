@@ -27,6 +27,7 @@ import {
 	SelectValue,
 	SelectItem,
 } from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
 const formSchema = z.object({
 	age: z.enum(AGE_GROUPS),
@@ -188,7 +189,28 @@ export default function Survey() {
 									<FormLabel>
 										How often do you listen to music?
 									</FormLabel>
-									<Select onValueChange={field.onChange}>
+									<FormControl>
+										<RadioGroup
+											onValueChange={field.onBlur}
+											defaultValue={field.value}
+											className="flex gap-4"
+										>
+											{FREQUENCIES.map((freq) => (
+												<FormItem key={freq}>
+													<FormControl>
+														<RadioGroupItem
+															value={freq}
+														/>
+													</FormControl>
+													<FormLabel>
+														{freq}
+													</FormLabel>
+												</FormItem>
+											))}
+										</RadioGroup>
+									</FormControl>
+
+									{/* <Select onValueChange={field.onChange}>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder="Select an option"></SelectValue>
@@ -205,7 +227,7 @@ export default function Survey() {
 												</SelectItem>
 											))}
 										</SelectContent>
-									</Select>
+									</Select> */}
 									<FormMessage />
 								</FormItem>
 							);
