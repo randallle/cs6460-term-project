@@ -4,19 +4,19 @@ import { Toggle } from "@/components/ui/toggle";
 import { useState } from "react";
 
 interface GenrePickerProps {
-	genres: string[];
+	genres: string[]; // All possible genres
+	selectedGenres: string[]; // Genres currently toggled on
+	setSelectedGenres: (genres: string[]) => void; // Function to update form state
 }
 
-export default function GenrePicker({ genres }: GenrePickerProps) {
+export default function GenrePicker({
+	genres,
+	selectedGenres,
+	setSelectedGenres,
+}: GenrePickerProps) {
 	const [localGenres, setLocalGenres] = useState<string[]>(genres);
 	const [isAddingNew, setIsAddingNew] = useState(false);
 	const [newGenre, setNewGenre] = useState("");
-	const [pressedStates, setPressedStates] = useState<{
-		[key: string]: boolean;
-	}>(
-		// Initialize all existing genres as pressed
-		Object.fromEntries(genres.map((genre) => [genre, false]))
-	);
 
 	const handleAddNew = () => {
 		setIsAddingNew(true);
@@ -29,10 +29,9 @@ export default function GenrePicker({ genres }: GenrePickerProps) {
 				setLocalGenres((prev) => [...prev, genreToAdd]);
 			}
 
-			setPressedStates((prev) => ({
-				...prev,
-				[genreToAdd]: true,
-			}));
+			if (!selectedGenres.includes(genreToAdd)) {
+				setSelectedGenres([...selectedGenres, genreToAdd]);
+			}
 		}
 		setNewGenre("");
 		setIsAddingNew(false);
@@ -41,9 +40,9 @@ export default function GenrePicker({ genres }: GenrePickerProps) {
 	function toTitleCase(str: string) {
 		return str
 			.toLowerCase()
-			.split(" ") // Split into words
+			.split(" ")
 			.map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
-			.join(" "); // Join back into a string
+			.join(" ");
 	}
 
 	return (
@@ -54,15 +53,18 @@ export default function GenrePicker({ genres }: GenrePickerProps) {
 					className="rounded-md w-fit px-3"
 					value={genre}
 					aria-label={`Toggle ${genre}`}
-					pressed={pressedStates[genre]}
+					pressed={selectedGenres.includes(genre)}
 					onPressedChange={(pressed) => {
-						setPressedStates((prev) => ({
-							...prev,
-							[genre]: pressed,
-						}));
+						if (pressed) {
+							setSelectedGenres([...selectedGenres, genre]);
+						} else {
+							setSelectedGenres(
+								selectedGenres.filter((g) => g !== genre)
+							);
+						}
 					}}
 				>
-					{`${genre}`}
+					{genre}
 				</Toggle>
 			))}
 

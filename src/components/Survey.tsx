@@ -48,7 +48,9 @@ export default function Survey() {
 		resolver: zodResolver(formSchema),
 	});
 
-	const handleSubmit = () => {};
+	const handleSubmit = (data: z.infer<typeof formSchema>) => {
+		console.log("Form data:", data);
+	};
 
 	return (
 		<div>
@@ -197,7 +199,7 @@ export default function Survey() {
 									</FormLabel>
 									<FormControl>
 										<RadioGroup
-											onValueChange={field.onBlur}
+											onValueChange={field.onChange}
 											defaultValue={field.value}
 											className="flex gap-4"
 										>
@@ -255,7 +257,7 @@ export default function Survey() {
 						}}
 					/>
 
-					{/* <FormField
+					<FormField
 						control={form.control}
 						name="genres"
 						render={({ field }) => {
@@ -267,13 +269,7 @@ export default function Survey() {
 									</FormLabel>
 									<FormControl>
 										<GenrePicker
-											genres={[
-												"Pop",
-												"Rock",
-												"Jazz",
-												"Hip-Hop",
-												"Classical",
-											]} // Add any initial options you want
+											genres={DEFAULT_GENRES}
 											selectedGenres={field.value ?? []}
 											setSelectedGenres={field.onChange}
 										/>
@@ -282,7 +278,7 @@ export default function Survey() {
 								</FormItem>
 							);
 						}}
-					/> */}
+					/>
 
 					<FormField
 						control={form.control}
