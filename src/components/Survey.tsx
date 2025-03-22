@@ -35,6 +35,9 @@ const formSchema = z.object({
 	education: z.enum(EDUCATION),
 	rpm: z.enum(YESNO),
 	musicFrequency: z.enum(FREQUENCIES),
+	musicWorkStudy: z.enum(YESNO),
+
+	musicalInstrument: z.enum(YESNO),
 });
 
 export default function Survey() {
@@ -209,8 +212,23 @@ export default function Survey() {
 											))}
 										</RadioGroup>
 									</FormControl>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
 
-									{/* <Select onValueChange={field.onChange}>
+					<FormField
+						control={form.control}
+						name="musicWorkStudy"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										Do you regularly listen to music while
+										studying or working?
+									</FormLabel>
+									<Select onValueChange={field.onChange}>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder="Select an option"></SelectValue>
@@ -227,7 +245,40 @@ export default function Survey() {
 												</SelectItem>
 											))}
 										</SelectContent>
-									</Select> */}
+									</Select>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+
+					<FormField
+						control={form.control}
+						name="musicalInstrument"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										Do you play a musical instrument?
+									</FormLabel>
+									<Select onValueChange={field.onChange}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Select an option"></SelectValue>
+											</SelectTrigger>
+										</FormControl>
+
+										<SelectContent>
+											{YESNO.map((option) => (
+												<SelectItem
+													key={option}
+													value={option}
+												>
+													{option}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
 									<FormMessage />
 								</FormItem>
 							);
