@@ -31,6 +31,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import GenrePicker from "@/components/GenrePicker";
+import { useState } from "react";
 
 const formSchema = z.object({
 	age: z.enum(AGE_GROUPS),
@@ -47,6 +48,7 @@ export default function Survey() {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 	});
+	const [resetGenres, setResetGenres] = useState(false);
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
 		console.log("Form data:", data);
@@ -263,15 +265,32 @@ export default function Survey() {
 						render={({ field }) => {
 							return (
 								<FormItem>
-									<FormLabel>
-										Select your favorite music genres, if
-										any:
+									<FormLabel className="flex justify-between">
+										<div>
+											Select your favorite music genres,
+											if any:
+										</div>
+										<Button
+											variant="secondary"
+											onClick={(e) => {
+												e.preventDefault(); // Prevent form submission
+												form.setValue("genres", []);
+												setResetGenres(true);
+												// Reset back to false after a short delay
+												setTimeout(() => {
+													setResetGenres(false);
+												}, 0);
+											}}
+										>
+											Reset
+										</Button>
 									</FormLabel>
 									<FormControl>
 										<GenrePicker
 											genres={DEFAULT_GENRES}
 											selectedGenres={field.value ?? []}
 											setSelectedGenres={field.onChange}
+											reset={resetGenres}
 										/>
 									</FormControl>
 									<FormMessage />

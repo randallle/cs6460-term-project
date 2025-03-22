@@ -1,22 +1,31 @@
 "use client";
 
 import { Toggle } from "@/components/ui/toggle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface GenrePickerProps {
 	genres: string[]; // All possible genres
 	selectedGenres: string[]; // Genres currently toggled on
 	setSelectedGenres: (genres: string[]) => void; // Function to update form state
+	reset?: boolean; // New prop to trigger reset
 }
 
 export default function GenrePicker({
 	genres,
 	selectedGenres,
 	setSelectedGenres,
+	reset,
 }: GenrePickerProps) {
 	const [localGenres, setLocalGenres] = useState<string[]>(genres);
 	const [isAddingNew, setIsAddingNew] = useState(false);
 	const [newGenre, setNewGenre] = useState("");
+
+	// Reset local genres when reset prop changes
+	useEffect(() => {
+		if (reset) {
+			setLocalGenres(genres);
+		}
+	}, [reset, genres]);
 
 	const handleAddNew = () => {
 		setIsAddingNew(true);
