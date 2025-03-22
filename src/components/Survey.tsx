@@ -29,6 +29,8 @@ import {
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
+import GenrePicker from "@/components/GenrePicker";
+
 const formSchema = z.object({
 	age: z.enum(AGE_GROUPS),
 	gender: z.enum(GENDERS),
@@ -36,7 +38,7 @@ const formSchema = z.object({
 	rpm: z.enum(YESNO),
 	musicFrequency: z.enum(FREQUENCIES),
 	musicWorkStudy: z.enum(YESNO),
-
+	// genres: z.enum(),
 	musicalInstrument: z.enum(YESNO),
 });
 
@@ -246,6 +248,23 @@ export default function Survey() {
 											))}
 										</SelectContent>
 									</Select>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+
+					<FormField
+						control={form.control}
+						name="genres"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										Select your favorite music genres, if
+										any:
+									</FormLabel>
+									<GenrePicker />
 									<FormMessage />
 								</FormItem>
 							);
