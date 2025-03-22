@@ -8,11 +8,7 @@ const AGE_GROUPS = [
 	{ label: "Over 65", value: "Over 65" },
 ];
 
-const GENDERS = [
-	{ label: "Male", value: "Male" },
-	{ label: "Female", value: "Female" },
-	{ label: "Other", value: "Other" },
-];
+const GENDERS = ["Male", "Female", "Other"] as const;
 
 const EDUCATION = [
 	{ label: "Some high school or less", value: "Some high school or less" },
