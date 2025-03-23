@@ -65,7 +65,7 @@ export default function Survey() {
 	};
 
 	return (
-		<div className="max-w-xl border border-gray-300 rounded-xl p-6 shadow-sm">
+		<div className="max-w-3xl border border-gray-300 rounded-xl p-6 shadow-sm">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(handleSubmit)}
@@ -73,119 +73,131 @@ export default function Survey() {
 				>
 					<section className="w-full flex flex-col gap-4">
 						<h2>Demographics & General Information</h2>
-						<FormField
-							control={form.control}
-							name="age"
-							render={({ field }) => {
-								return (
-									<FormItem>
-										<FormLabel>
-											Age
-											{isFieldRequired('age') && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<Select onValueChange={field.onChange}>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue placeholder="Select an age group"></SelectValue>
-												</SelectTrigger>
-											</FormControl>
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							<FormField
+								control={form.control}
+								name="age"
+								render={({ field }) => {
+									return (
+										<FormItem>
+											<FormLabel>
+												Age
+												{isFieldRequired('age') && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<Select
+												onValueChange={field.onChange}
+											>
+												<FormControl>
+													<SelectTrigger className="w-full">
+														<SelectValue placeholder="Select an age group"></SelectValue>
+													</SelectTrigger>
+												</FormControl>
 
-											<SelectContent>
-												{AGE_GROUPS.map((ageGroup) => (
-													<SelectItem
-														key={ageGroup}
-														value={ageGroup}
-													>
-														{ageGroup}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
-										{/* <FormMessage /> */}
-									</FormItem>
-								);
-							}}
-						/>
+												<SelectContent>
+													{AGE_GROUPS.map(
+														(ageGroup) => (
+															<SelectItem
+																key={ageGroup}
+																value={ageGroup}
+															>
+																{ageGroup}
+															</SelectItem>
+														)
+													)}
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									);
+								}}
+							/>
 
-						<FormField
-							control={form.control}
-							name="gender"
-							render={({ field }) => {
-								return (
-									<FormItem>
-										<FormLabel>
-											Gender
-											{isFieldRequired('gender') && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<Select onValueChange={field.onChange}>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue placeholder="Select a gender"></SelectValue>
-												</SelectTrigger>
-											</FormControl>
+							<FormField
+								control={form.control}
+								name="gender"
+								render={({ field }) => {
+									return (
+										<FormItem>
+											<FormLabel>
+												Gender
+												{isFieldRequired('gender') && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<Select
+												onValueChange={field.onChange}
+											>
+												<FormControl>
+													<SelectTrigger className="w-full">
+														<SelectValue placeholder="Select a gender"></SelectValue>
+													</SelectTrigger>
+												</FormControl>
 
-											<SelectContent>
-												{GENDERS.map((gender) => (
-													<SelectItem
-														key={gender}
-														value={gender}
-													>
-														{gender}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								);
-							}}
-						/>
+												<SelectContent>
+													{GENDERS.map((gender) => (
+														<SelectItem
+															key={gender}
+															value={gender}
+														>
+															{gender}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									);
+								}}
+							/>
 
-						<FormField
-							control={form.control}
-							name="education"
-							render={({ field }) => {
-								return (
-									<FormItem>
-										<FormLabel>
-											Education
-											{isFieldRequired('education') && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<Select onValueChange={field.onChange}>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue placeholder="Select an education level"></SelectValue>
-												</SelectTrigger>
-											</FormControl>
+							<FormField
+								control={form.control}
+								name="education"
+								render={({ field }) => {
+									return (
+										<FormItem>
+											<FormLabel>
+												Education
+												{isFieldRequired(
+													'education'
+												) && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<Select
+												onValueChange={field.onChange}
+											>
+												<FormControl>
+													<SelectTrigger className="w-full">
+														<SelectValue placeholder="Select an education level"></SelectValue>
+													</SelectTrigger>
+												</FormControl>
 
-											<SelectContent>
-												{EDUCATION.map((level) => (
-													<SelectItem
-														key={level}
-														value={level}
-													>
-														{level}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								);
-							}}
-						/>
+												<SelectContent>
+													{EDUCATION.map((level) => (
+														<SelectItem
+															key={level}
+															value={level}
+														>
+															{level}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									);
+								}}
+							/>
+						</div>
 
 						<FormField
 							control={form.control}
