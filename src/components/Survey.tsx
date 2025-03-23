@@ -33,6 +33,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import GenrePicker from '@/components/GenrePicker';
 import { useState } from 'react';
+import { Separator } from '@/components/ui/separator';
 
 const formSchema = z.object({
 	age: z.enum(AGE_GROUPS),
@@ -224,6 +225,7 @@ export default function Survey() {
 								);
 							}}
 						/>
+						<Separator className="my-2" />
 					</section>
 					<section className="w-full flex flex-col gap-4">
 						<h2>Musical Background & Preferences</h2>
@@ -402,6 +404,7 @@ export default function Survey() {
 								);
 							}}
 						/>
+						<Separator className="my-2" />
 					</section>
 					<section className="w-full flex flex-col gap-4">
 						<h2>Mood Factors</h2>
@@ -500,6 +503,7 @@ export default function Survey() {
 								);
 							}}
 						/>
+						<Separator className="my-2" />
 					</section>
 					<Button type="submit" className="w-full">
 						Next Step
