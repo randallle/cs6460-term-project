@@ -22,11 +22,13 @@ export default function Matrix({
 	choices,
 	selectedAnswer,
 }: MatrixProps) {
+	const totalCells = items.length + 1;
+	const gridSize = Math.ceil(Math.sqrt(totalCells));
+
 	return (
 		<div
-			className={`w-fit h-fit gap-4 grid grid-cols-${
-				items.length === 3 ? "2" : "3"
-			}`}
+			className="w-fit h-fit gap-4 grid"
+			style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}
 		>
 			{items.map((item, index) => (
 				<div key={index} className="w-40 h-40 border relative">
