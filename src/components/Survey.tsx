@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
 import {
 	Form,
 	FormField,
@@ -10,9 +10,9 @@ import {
 	FormMessage,
 	FormLabel,
 	FormControl,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
 	AGE_GROUPS,
 	GENDERS,
@@ -21,19 +21,19 @@ import {
 	FREQUENCIES,
 	DEFAULT_GENRES,
 	SCALE,
-} from '@/lib/constants';
+} from "@/lib/constants";
 import {
 	Select,
 	SelectContent,
 	SelectTrigger,
 	SelectValue,
 	SelectItem,
-} from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-import GenrePicker from '@/components/GenrePicker';
-import { useState } from 'react';
-import { Separator } from '@/components/ui/separator';
+import GenrePicker from "@/components/GenrePicker";
+import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
 	age: z.enum(AGE_GROUPS),
@@ -61,7 +61,7 @@ export default function Survey() {
 	};
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
-		console.log('Form data:', data);
+		console.log("Form data:", data);
 	};
 
 	return (
@@ -82,7 +82,7 @@ export default function Survey() {
 										<FormItem>
 											<FormLabel>
 												Age
-												{isFieldRequired('age') && (
+												{isFieldRequired("age") && (
 													<span className="text-red-500">
 														*
 													</span>
@@ -124,7 +124,7 @@ export default function Survey() {
 										<FormItem>
 											<FormLabel>
 												Gender
-												{isFieldRequired('gender') && (
+												{isFieldRequired("gender") && (
 													<span className="text-red-500">
 														*
 													</span>
@@ -165,7 +165,7 @@ export default function Survey() {
 											<FormLabel>
 												Education
 												{isFieldRequired(
-													'education'
+													"education"
 												) && (
 													<span className="text-red-500">
 														*
@@ -205,33 +205,39 @@ export default function Survey() {
 							render={({ field }) => {
 								return (
 									<FormItem>
-										<FormLabel>
-											Have you taken a Raven&apos;s
-											Progressive Matrices test before?
-											{isFieldRequired('rpm') && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<Select onValueChange={field.onChange}>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue placeholder="Select an option"></SelectValue>
-												</SelectTrigger>
-											</FormControl>
+										<div className="grid md:grid-cols-3 gap-8">
+											<FormLabel className="col-span-2 flex justify-end">
+												Have you taken a Raven&apos;s
+												Progressive Matrices test
+												before?
+												{isFieldRequired("rpm") && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<Select
+												onValueChange={field.onChange}
+											>
+												<FormControl>
+													<SelectTrigger className="w-full">
+														<SelectValue placeholder="Select an option"></SelectValue>
+													</SelectTrigger>
+												</FormControl>
 
-											<SelectContent>
-												{YESNO.map((option) => (
-													<SelectItem
-														key={option}
-														value={option}
-													>
-														{option}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
+												<SelectContent>
+													{YESNO.map((option) => (
+														<SelectItem
+															key={option}
+															value={option}
+														>
+															{option}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+										</div>
+
 										<FormMessage />
 									</FormItem>
 								);
@@ -247,39 +253,45 @@ export default function Survey() {
 							render={({ field }) => {
 								return (
 									<FormItem>
-										<FormLabel>
-											How often do you listen to music?
-											{isFieldRequired(
-												'musicFrequency'
-											) && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<FormControl>
-											<RadioGroup
-												onValueChange={field.onChange}
-												defaultValue={field.value}
-												className="flex gap-4"
-											>
-												{FREQUENCIES.map((freq) => (
-													<FormItem
-														key={freq}
-														className="flex flex-col items-center w-full"
-													>
-														<FormControl>
-															<RadioGroupItem
-																value={freq}
-															/>
-														</FormControl>
-														<FormLabel>
-															{freq}
-														</FormLabel>
-													</FormItem>
-												))}
-											</RadioGroup>
-										</FormControl>
+										<div className="grid md:grid-cols-[auto_1fr] gap-2">
+											<FormLabel className="flex justify-start">
+												How often do you listen to
+												music?
+												{isFieldRequired(
+													"musicFrequency"
+												) && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<FormControl>
+												<RadioGroup
+													onValueChange={
+														field.onChange
+													}
+													defaultValue={field.value}
+													className="flex gap-4 border border-gray-300 rounded-xl p-4"
+												>
+													{FREQUENCIES.map((freq) => (
+														<FormItem
+															key={freq}
+															className="flex flex-col items-center w-full"
+														>
+															<FormControl>
+																<RadioGroupItem
+																	value={freq}
+																/>
+															</FormControl>
+															<FormLabel>
+																{freq}
+															</FormLabel>
+														</FormItem>
+													))}
+												</RadioGroup>
+											</FormControl>
+										</div>
+
 										<FormMessage />
 									</FormItem>
 								);
@@ -292,35 +304,86 @@ export default function Survey() {
 							render={({ field }) => {
 								return (
 									<FormItem>
-										<FormLabel>
-											Do you regularly listen to music
-											while studying or working?
-											{isFieldRequired(
-												'musicWorkStudy'
-											) && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<Select onValueChange={field.onChange}>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue placeholder="Select an option"></SelectValue>
-												</SelectTrigger>
-											</FormControl>
+										<div className="grid md:grid-cols-3 gap-8">
+											<FormLabel className="col-span-2 flex justify-end">
+												Do you regularly listen to music
+												while studying or working?
+												{isFieldRequired(
+													"musicWorkStudy"
+												) && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<Select
+												onValueChange={field.onChange}
+											>
+												<FormControl>
+													<SelectTrigger className="w-full">
+														<SelectValue placeholder="Select an option"></SelectValue>
+													</SelectTrigger>
+												</FormControl>
 
-											<SelectContent>
-												{YESNO.map((option) => (
-													<SelectItem
-														key={option}
-														value={option}
-													>
-														{option}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
+												<SelectContent>
+													{YESNO.map((option) => (
+														<SelectItem
+															key={option}
+															value={option}
+														>
+															{option}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+										</div>
+
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+
+						<FormField
+							control={form.control}
+							name="musicalInstrument"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<div className="grid md:grid-cols-3 gap-8">
+											<FormLabel className="col-span-2 flex justify-end">
+												Do you play a musical
+												instrument?
+												{isFieldRequired(
+													"musicalInstrument"
+												) && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</FormLabel>
+											<Select
+												onValueChange={field.onChange}
+											>
+												<FormControl>
+													<SelectTrigger className="w-full">
+														<SelectValue placeholder="Select an option"></SelectValue>
+													</SelectTrigger>
+												</FormControl>
+
+												<SelectContent>
+													{YESNO.map((option) => (
+														<SelectItem
+															key={option}
+															value={option}
+														>
+															{option}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+										</div>
+
 										<FormMessage />
 									</FormItem>
 								);
@@ -333,22 +396,22 @@ export default function Survey() {
 							render={({ field }) => {
 								return (
 									<FormItem>
-										<FormLabel className="flex justify-between">
+										<FormLabel className="flex justify-start">
 											<div>
 												Select your favorite music
 												genres, if any:
-												{isFieldRequired('genres') && (
+												{isFieldRequired("genres") && (
 													<span className="text-red-500">
 														*
 													</span>
 												)}
 											</div>
 											<Button
-												variant="secondary"
+												variant="outline"
 												size="sm"
 												onClick={(e) => {
 													e.preventDefault(); // Prevent form submission
-													form.setValue('genres', []);
+													form.setValue("genres", []);
 													setResetGenres(true);
 													// Reset back to false after a short delay
 													setTimeout(() => {
@@ -377,45 +440,6 @@ export default function Survey() {
 							}}
 						/>
 
-						<FormField
-							control={form.control}
-							name="musicalInstrument"
-							render={({ field }) => {
-								return (
-									<FormItem>
-										<FormLabel>
-											Do you play a musical instrument?
-											{isFieldRequired(
-												'musicalInstrument'
-											) && (
-												<span className="text-red-500">
-													*
-												</span>
-											)}
-										</FormLabel>
-										<Select onValueChange={field.onChange}>
-											<FormControl>
-												<SelectTrigger>
-													<SelectValue placeholder="Select an option"></SelectValue>
-												</SelectTrigger>
-											</FormControl>
-
-											<SelectContent>
-												{YESNO.map((option) => (
-													<SelectItem
-														key={option}
-														value={option}
-													>
-														{option}
-													</SelectItem>
-												))}
-											</SelectContent>
-										</Select>
-										<FormMessage />
-									</FormItem>
-								);
-							}}
-						/>
 						<Separator className="my-2" />
 					</section>
 					<section className="w-full flex flex-col gap-4">
@@ -429,7 +453,7 @@ export default function Survey() {
 										<FormLabel>
 											On a scale of 1-10, how focused do
 											you feel right now?
-											{isFieldRequired('focus') && (
+											{isFieldRequired("focus") && (
 												<span className="text-red-500">
 													*
 												</span>
@@ -477,7 +501,7 @@ export default function Survey() {
 										<FormLabel>
 											On a scale of 1-10, how stressed do
 											you feel right now?
-											{isFieldRequired('stress') && (
+											{isFieldRequired("stress") && (
 												<span className="text-red-500">
 													*
 												</span>
