@@ -452,7 +452,8 @@ export default function Survey() {
 									<FormItem>
 										<FormLabel>
 											On a scale of 1-10, how focused do
-											you feel right now?
+											you feel right now (1 = not at all,
+											10 = extremely focused)?
 											{isFieldRequired("focus") && (
 												<span className="text-red-500">
 													*
@@ -500,7 +501,8 @@ export default function Survey() {
 									<FormItem>
 										<FormLabel>
 											On a scale of 1-10, how stressed do
-											you feel right now?
+											you feel right now? (1 = not at all,
+											10 = extremely stressed)
 											{isFieldRequired("stress") && (
 												<span className="text-red-500">
 													*
