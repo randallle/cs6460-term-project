@@ -38,4 +38,14 @@ const DEFAULT_GENRES = [
 	"Folk",
 ];
 
-export { AGE_GROUPS, GENDERS, EDUCATION, YESNO, FREQUENCIES, DEFAULT_GENRES };
+const SCALE = Array.from({ length: 10 }, (_, i) => i + 1);
+
+export {
+	AGE_GROUPS,
+	GENDERS,
+	EDUCATION,
+	YESNO,
+	FREQUENCIES,
+	DEFAULT_GENRES,
+	SCALE,
+};

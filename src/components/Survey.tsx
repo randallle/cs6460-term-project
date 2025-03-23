@@ -20,6 +20,7 @@ import {
 	YESNO,
 	FREQUENCIES,
 	DEFAULT_GENRES,
+	SCALE,
 } from "@/lib/constants";
 import {
 	Select,
@@ -42,6 +43,8 @@ const formSchema = z.object({
 	musicWorkStudy: z.enum(YESNO),
 	genres: z.array(z.string()).optional(),
 	musicalInstrument: z.enum(YESNO),
+	focus: z.number().min(1).max(10),
+	stress: z.number().min(1).max(10),
 });
 
 export default function Survey() {
@@ -50,16 +53,22 @@ export default function Survey() {
 	});
 	const [resetGenres, setResetGenres] = useState(false);
 
+	// Helper function to check if a field is required
+	const isFieldRequired = (fieldName: keyof z.infer<typeof formSchema>) => {
+		const field = formSchema.shape[fieldName];
+		return !field.isOptional();
+	};
+
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
 		console.log("Form data:", data);
 	};
 
 	return (
-		<div>
+		<div className="max-w-xl border border-gray-300 rounded-xl p-6 shadow-sm">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(handleSubmit)}
-					className="max-w-md w-full flex flex-col gap-4"
+					className=" w-full flex flex-col gap-4"
 				>
 					<h2>Demographics & General Information</h2>
 					<FormField
@@ -68,7 +77,14 @@ export default function Survey() {
 						render={({ field }) => {
 							return (
 								<FormItem>
-									<FormLabel>Age</FormLabel>
+									<FormLabel>
+										Age
+										{isFieldRequired("age") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
+									</FormLabel>
 									<Select onValueChange={field.onChange}>
 										<FormControl>
 											<SelectTrigger>
@@ -87,7 +103,7 @@ export default function Survey() {
 											))}
 										</SelectContent>
 									</Select>
-									<FormMessage />
+									{/* <FormMessage /> */}
 								</FormItem>
 							);
 						}}
@@ -99,7 +115,14 @@ export default function Survey() {
 						render={({ field }) => {
 							return (
 								<FormItem>
-									<FormLabel>Gender</FormLabel>
+									<FormLabel>
+										Gender
+										{isFieldRequired("gender") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
+									</FormLabel>
 									<Select onValueChange={field.onChange}>
 										<FormControl>
 											<SelectTrigger>
@@ -130,7 +153,14 @@ export default function Survey() {
 						render={({ field }) => {
 							return (
 								<FormItem>
-									<FormLabel>Education</FormLabel>
+									<FormLabel>
+										Education
+										{isFieldRequired("education") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
+									</FormLabel>
 									<Select onValueChange={field.onChange}>
 										<FormControl>
 											<SelectTrigger>
@@ -164,6 +194,11 @@ export default function Survey() {
 									<FormLabel>
 										Have you taken a Raven&apos;s
 										Progressive Matrices test before?
+										{isFieldRequired("rpm") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
 									</FormLabel>
 									<Select onValueChange={field.onChange}>
 										<FormControl>
@@ -198,6 +233,11 @@ export default function Survey() {
 								<FormItem>
 									<FormLabel>
 										How often do you listen to music?
+										{isFieldRequired("musicFrequency") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
 									</FormLabel>
 									<FormControl>
 										<RadioGroup
@@ -206,7 +246,10 @@ export default function Survey() {
 											className="flex gap-4"
 										>
 											{FREQUENCIES.map((freq) => (
-												<FormItem key={freq}>
+												<FormItem
+													key={freq}
+													className="flex flex-col items-center w-full"
+												>
 													<FormControl>
 														<RadioGroupItem
 															value={freq}
@@ -234,6 +277,11 @@ export default function Survey() {
 									<FormLabel>
 										Do you regularly listen to music while
 										studying or working?
+										{isFieldRequired("musicWorkStudy") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
 									</FormLabel>
 									<Select onValueChange={field.onChange}>
 										<FormControl>
@@ -269,6 +317,11 @@ export default function Survey() {
 										<div>
 											Select your favorite music genres,
 											if any:
+											{isFieldRequired("genres") && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
 										</div>
 										<Button
 											variant="secondary"
@@ -308,6 +361,13 @@ export default function Survey() {
 								<FormItem>
 									<FormLabel>
 										Do you play a musical instrument?
+										{isFieldRequired(
+											"musicalInstrument"
+										) && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
 									</FormLabel>
 									<Select onValueChange={field.onChange}>
 										<FormControl>
@@ -333,8 +393,100 @@ export default function Survey() {
 						}}
 					/>
 
+					<h2>Mood Factors</h2>
+					<FormField
+						control={form.control}
+						name="focus"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										On a scale of 1-10, how focused do you
+										feel right now?
+										{isFieldRequired("focus") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
+									</FormLabel>
+									<FormControl>
+										<RadioGroup
+											onValueChange={field.onChange}
+											defaultValue={String(field.value)}
+											className="flex gap-4"
+										>
+											{SCALE.map((level) => (
+												<FormItem
+													key={level}
+													className="flex flex-col items-center w-full"
+												>
+													<FormControl>
+														<RadioGroupItem
+															value={String(
+																level
+															)}
+														/>
+													</FormControl>
+													<FormLabel>
+														{level}
+													</FormLabel>
+												</FormItem>
+											))}
+										</RadioGroup>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+
+					<FormField
+						control={form.control}
+						name="stress"
+						render={({ field }) => {
+							return (
+								<FormItem>
+									<FormLabel>
+										On a scale of 1-10, how stressed do you
+										feel right now?
+										{isFieldRequired("stress") && (
+											<span className="text-red-500">
+												*
+											</span>
+										)}
+									</FormLabel>
+									<FormControl>
+										<RadioGroup
+											onValueChange={field.onChange}
+											defaultValue={String(field.value)}
+											className="flex gap-4"
+										>
+											{SCALE.map((level) => (
+												<FormItem
+													key={level}
+													className="flex flex-col items-center w-full"
+												>
+													<FormControl>
+														<RadioGroupItem
+															value={String(
+																level
+															)}
+														/>
+													</FormControl>
+													<FormLabel>
+														{level}
+													</FormLabel>
+												</FormItem>
+											))}
+										</RadioGroup>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
 					<Button type="submit" className="w-full">
-						Submit
+						Next Step
 					</Button>
 				</form>
 			</Form>
