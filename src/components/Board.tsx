@@ -21,17 +21,17 @@ export default function Board({ problem }: BoardProps) {
 	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	return (
-		<div className="grid grid-cols-2">
-			<div>
-				<Matrix
-					items={matrix}
-					choices={choices}
-					selectedAnswer={selectedAnswer}
-				/>
-			</div>
-			<div className="flex justify-end">
-				<div>
-					<h2>Select an answer</h2>
+		<div>
+			<h2 className="flex justify-end">Select an answer below</h2>
+			<div className="grid grid-cols-2">
+				<div className="mt-10">
+					<Matrix
+						items={matrix}
+						choices={choices}
+						selectedAnswer={selectedAnswer}
+					/>
+				</div>
+				<div className="flex justify-end">
 					<AnswerChoicesGrid
 						choices={choices}
 						selectedAnswer={selectedAnswer}
