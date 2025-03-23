@@ -465,7 +465,7 @@ export default function Survey() {
 												defaultValue={String(
 													field.value
 												)}
-												className="flex gap-4"
+												className="flex gap-4 p-4"
 											>
 												{SCALE.map((level) => (
 													<FormItem
@@ -513,7 +513,7 @@ export default function Survey() {
 												defaultValue={String(
 													field.value
 												)}
-												className="flex gap-4"
+												className="flex gap-4 p-4"
 											>
 												{SCALE.map((level) => (
 													<FormItem
