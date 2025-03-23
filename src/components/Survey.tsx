@@ -271,7 +271,7 @@ export default function Survey() {
 														field.onChange
 													}
 													defaultValue={field.value}
-													className="flex gap-4 border border-gray-300 rounded-xl p-4"
+													className="flex gap-4 border border-gray-200 rounded-xl p-4"
 												>
 													{FREQUENCIES.map((freq) => (
 														<FormItem
