@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import {
 	Form,
 	FormField,
@@ -10,9 +10,9 @@ import {
 	FormMessage,
 	FormLabel,
 	FormControl,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
 	AGE_GROUPS,
 	GENDERS,
@@ -21,18 +21,18 @@ import {
 	FREQUENCIES,
 	DEFAULT_GENRES,
 	SCALE,
-} from "@/lib/constants";
+} from '@/lib/constants';
 import {
 	Select,
 	SelectContent,
 	SelectTrigger,
 	SelectValue,
 	SelectItem,
-} from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-import GenrePicker from "@/components/GenrePicker";
-import { useState } from "react";
+import GenrePicker from '@/components/GenrePicker';
+import { useState } from 'react';
 
 const formSchema = z.object({
 	age: z.enum(AGE_GROUPS),
@@ -60,7 +60,7 @@ export default function Survey() {
 	};
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
-		console.log("Form data:", data);
+		console.log('Form data:', data);
 	};
 
 	return (
@@ -68,423 +68,439 @@ export default function Survey() {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(handleSubmit)}
-					className=" w-full flex flex-col gap-4"
+					className="w-full flex flex-col gap-4"
 				>
-					<h2>Demographics & General Information</h2>
-					<FormField
-						control={form.control}
-						name="age"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										Age
-										{isFieldRequired("age") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<Select onValueChange={field.onChange}>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select an age group"></SelectValue>
-											</SelectTrigger>
-										</FormControl>
-
-										<SelectContent>
-											{AGE_GROUPS.map((ageGroup) => (
-												<SelectItem
-													key={ageGroup}
-													value={ageGroup}
-												>
-													{ageGroup}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									{/* <FormMessage /> */}
-								</FormItem>
-							);
-						}}
-					/>
-
-					<FormField
-						control={form.control}
-						name="gender"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										Gender
-										{isFieldRequired("gender") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<Select onValueChange={field.onChange}>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select a gender"></SelectValue>
-											</SelectTrigger>
-										</FormControl>
-
-										<SelectContent>
-											{GENDERS.map((gender) => (
-												<SelectItem
-													key={gender}
-													value={gender}
-												>
-													{gender}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
-
-					<FormField
-						control={form.control}
-						name="education"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										Education
-										{isFieldRequired("education") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<Select onValueChange={field.onChange}>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select an education level"></SelectValue>
-											</SelectTrigger>
-										</FormControl>
-
-										<SelectContent>
-											{EDUCATION.map((level) => (
-												<SelectItem
-													key={level}
-													value={level}
-												>
-													{level}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
-
-					<FormField
-						control={form.control}
-						name="rpm"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										Have you taken a Raven&apos;s
-										Progressive Matrices test before?
-										{isFieldRequired("rpm") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<Select onValueChange={field.onChange}>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select an option"></SelectValue>
-											</SelectTrigger>
-										</FormControl>
-
-										<SelectContent>
-											{YESNO.map((option) => (
-												<SelectItem
-													key={option}
-													value={option}
-												>
-													{option}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
-
-					<h2>Musical Background & Preferences</h2>
-					<FormField
-						control={form.control}
-						name="musicFrequency"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										How often do you listen to music?
-										{isFieldRequired("musicFrequency") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<FormControl>
-										<RadioGroup
-											onValueChange={field.onChange}
-											defaultValue={field.value}
-											className="flex gap-4"
-										>
-											{FREQUENCIES.map((freq) => (
-												<FormItem
-													key={freq}
-													className="flex flex-col items-center w-full"
-												>
-													<FormControl>
-														<RadioGroupItem
-															value={freq}
-														/>
-													</FormControl>
-													<FormLabel>
-														{freq}
-													</FormLabel>
-												</FormItem>
-											))}
-										</RadioGroup>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
-
-					<FormField
-						control={form.control}
-						name="musicWorkStudy"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										Do you regularly listen to music while
-										studying or working?
-										{isFieldRequired("musicWorkStudy") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<Select onValueChange={field.onChange}>
-										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select an option"></SelectValue>
-											</SelectTrigger>
-										</FormControl>
-
-										<SelectContent>
-											{YESNO.map((option) => (
-												<SelectItem
-													key={option}
-													value={option}
-												>
-													{option}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
-
-					<FormField
-						control={form.control}
-						name="genres"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel className="flex justify-between">
-										<div>
-											Select your favorite music genres,
-											if any:
-											{isFieldRequired("genres") && (
+					<section className="w-full flex flex-col gap-4">
+						<h2>Demographics & General Information</h2>
+						<FormField
+							control={form.control}
+							name="age"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											Age
+											{isFieldRequired('age') && (
 												<span className="text-red-500">
 													*
 												</span>
 											)}
-										</div>
-										<Button
-											variant="secondary"
-											size="sm"
-											onClick={(e) => {
-												e.preventDefault(); // Prevent form submission
-												form.setValue("genres", []);
-												setResetGenres(true);
-												// Reset back to false after a short delay
-												setTimeout(() => {
-													setResetGenres(false);
-												}, 0);
-											}}
-										>
-											Reset
-										</Button>
-									</FormLabel>
-									<FormControl>
-										<GenrePicker
-											genres={DEFAULT_GENRES}
-											selectedGenres={field.value ?? []}
-											setSelectedGenres={field.onChange}
-											reset={resetGenres}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
+										</FormLabel>
+										<Select onValueChange={field.onChange}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select an age group"></SelectValue>
+												</SelectTrigger>
+											</FormControl>
 
-					<FormField
-						control={form.control}
-						name="musicalInstrument"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										Do you play a musical instrument?
-										{isFieldRequired(
-											"musicalInstrument"
-										) && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<Select onValueChange={field.onChange}>
+											<SelectContent>
+												{AGE_GROUPS.map((ageGroup) => (
+													<SelectItem
+														key={ageGroup}
+														value={ageGroup}
+													>
+														{ageGroup}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										{/* <FormMessage /> */}
+									</FormItem>
+								);
+							}}
+						/>
+
+						<FormField
+							control={form.control}
+							name="gender"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											Gender
+											{isFieldRequired('gender') && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<Select onValueChange={field.onChange}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select a gender"></SelectValue>
+												</SelectTrigger>
+											</FormControl>
+
+											<SelectContent>
+												{GENDERS.map((gender) => (
+													<SelectItem
+														key={gender}
+														value={gender}
+													>
+														{gender}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+
+						<FormField
+							control={form.control}
+							name="education"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											Education
+											{isFieldRequired('education') && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<Select onValueChange={field.onChange}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select an education level"></SelectValue>
+												</SelectTrigger>
+											</FormControl>
+
+											<SelectContent>
+												{EDUCATION.map((level) => (
+													<SelectItem
+														key={level}
+														value={level}
+													>
+														{level}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+
+						<FormField
+							control={form.control}
+							name="rpm"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											Have you taken a Raven&apos;s
+											Progressive Matrices test before?
+											{isFieldRequired('rpm') && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<Select onValueChange={field.onChange}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select an option"></SelectValue>
+												</SelectTrigger>
+											</FormControl>
+
+											<SelectContent>
+												{YESNO.map((option) => (
+													<SelectItem
+														key={option}
+														value={option}
+													>
+														{option}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+					</section>
+					<section className="w-full flex flex-col gap-4">
+						<h2>Musical Background & Preferences</h2>
+						<FormField
+							control={form.control}
+							name="musicFrequency"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											How often do you listen to music?
+											{isFieldRequired(
+												'musicFrequency'
+											) && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
 										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder="Select an option"></SelectValue>
-											</SelectTrigger>
+											<RadioGroup
+												onValueChange={field.onChange}
+												defaultValue={field.value}
+												className="flex gap-4"
+											>
+												{FREQUENCIES.map((freq) => (
+													<FormItem
+														key={freq}
+														className="flex flex-col items-center w-full"
+													>
+														<FormControl>
+															<RadioGroupItem
+																value={freq}
+															/>
+														</FormControl>
+														<FormLabel>
+															{freq}
+														</FormLabel>
+													</FormItem>
+												))}
+											</RadioGroup>
 										</FormControl>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
 
-										<SelectContent>
-											{YESNO.map((option) => (
-												<SelectItem
-													key={option}
-													value={option}
-												>
-													{option}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
+						<FormField
+							control={form.control}
+							name="musicWorkStudy"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											Do you regularly listen to music
+											while studying or working?
+											{isFieldRequired(
+												'musicWorkStudy'
+											) && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<Select onValueChange={field.onChange}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select an option"></SelectValue>
+												</SelectTrigger>
+											</FormControl>
 
-					<h2>Mood Factors</h2>
-					<FormField
-						control={form.control}
-						name="focus"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										On a scale of 1-10, how focused do you
-										feel right now?
-										{isFieldRequired("focus") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<FormControl>
-										<RadioGroup
-											onValueChange={field.onChange}
-											defaultValue={String(field.value)}
-											className="flex gap-4"
-										>
-											{SCALE.map((level) => (
-												<FormItem
-													key={level}
-													className="flex flex-col items-center w-full"
-												>
-													<FormControl>
-														<RadioGroupItem
-															value={String(
-																level
-															)}
-														/>
-													</FormControl>
-													<FormLabel>
-														{level}
-													</FormLabel>
-												</FormItem>
-											))}
-										</RadioGroup>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
+											<SelectContent>
+												{YESNO.map((option) => (
+													<SelectItem
+														key={option}
+														value={option}
+													>
+														{option}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
 
-					<FormField
-						control={form.control}
-						name="stress"
-						render={({ field }) => {
-							return (
-								<FormItem>
-									<FormLabel>
-										On a scale of 1-10, how stressed do you
-										feel right now?
-										{isFieldRequired("stress") && (
-											<span className="text-red-500">
-												*
-											</span>
-										)}
-									</FormLabel>
-									<FormControl>
-										<RadioGroup
-											onValueChange={field.onChange}
-											defaultValue={String(field.value)}
-											className="flex gap-4"
-										>
-											{SCALE.map((level) => (
-												<FormItem
-													key={level}
-													className="flex flex-col items-center w-full"
-												>
-													<FormControl>
-														<RadioGroupItem
-															value={String(
-																level
-															)}
-														/>
-													</FormControl>
-													<FormLabel>
-														{level}
-													</FormLabel>
-												</FormItem>
-											))}
-										</RadioGroup>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							);
-						}}
-					/>
+						<FormField
+							control={form.control}
+							name="genres"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel className="flex justify-between">
+											<div>
+												Select your favorite music
+												genres, if any:
+												{isFieldRequired('genres') && (
+													<span className="text-red-500">
+														*
+													</span>
+												)}
+											</div>
+											<Button
+												variant="secondary"
+												size="sm"
+												onClick={(e) => {
+													e.preventDefault(); // Prevent form submission
+													form.setValue('genres', []);
+													setResetGenres(true);
+													// Reset back to false after a short delay
+													setTimeout(() => {
+														setResetGenres(false);
+													}, 0);
+												}}
+											>
+												Reset
+											</Button>
+										</FormLabel>
+										<FormControl>
+											<GenrePicker
+												genres={DEFAULT_GENRES}
+												selectedGenres={
+													field.value ?? []
+												}
+												setSelectedGenres={
+													field.onChange
+												}
+												reset={resetGenres}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+
+						<FormField
+							control={form.control}
+							name="musicalInstrument"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											Do you play a musical instrument?
+											{isFieldRequired(
+												'musicalInstrument'
+											) && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<Select onValueChange={field.onChange}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select an option"></SelectValue>
+												</SelectTrigger>
+											</FormControl>
+
+											<SelectContent>
+												{YESNO.map((option) => (
+													<SelectItem
+														key={option}
+														value={option}
+													>
+														{option}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+					</section>
+					<section className="w-full flex flex-col gap-4">
+						<h2>Mood Factors</h2>
+						<FormField
+							control={form.control}
+							name="focus"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											On a scale of 1-10, how focused do
+											you feel right now?
+											{isFieldRequired('focus') && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<FormControl>
+											<RadioGroup
+												onValueChange={field.onChange}
+												defaultValue={String(
+													field.value
+												)}
+												className="flex gap-4"
+											>
+												{SCALE.map((level) => (
+													<FormItem
+														key={level}
+														className="flex flex-col items-center w-full"
+													>
+														<FormControl>
+															<RadioGroupItem
+																value={String(
+																	level
+																)}
+															/>
+														</FormControl>
+														<FormLabel>
+															{level}
+														</FormLabel>
+													</FormItem>
+												))}
+											</RadioGroup>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+
+						<FormField
+							control={form.control}
+							name="stress"
+							render={({ field }) => {
+								return (
+									<FormItem>
+										<FormLabel>
+											On a scale of 1-10, how stressed do
+											you feel right now?
+											{isFieldRequired('stress') && (
+												<span className="text-red-500">
+													*
+												</span>
+											)}
+										</FormLabel>
+										<FormControl>
+											<RadioGroup
+												onValueChange={field.onChange}
+												defaultValue={String(
+													field.value
+												)}
+												className="flex gap-4"
+											>
+												{SCALE.map((level) => (
+													<FormItem
+														key={level}
+														className="flex flex-col items-center w-full"
+													>
+														<FormControl>
+															<RadioGroupItem
+																value={String(
+																	level
+																)}
+															/>
+														</FormControl>
+														<FormLabel>
+															{level}
+														</FormLabel>
+													</FormItem>
+												))}
+											</RadioGroup>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+					</section>
 					<Button type="submit" className="w-full">
 						Next Step
 					</Button>
