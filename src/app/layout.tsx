@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<nav>
-					<h1>Raven&apos;s Progressive Matrices</h1>
+					<h1 className="font-black">
+						<Link href="/">CS 6795: Term Project</Link>
+					</h1>
 				</nav>
 				{children}
 			</body>

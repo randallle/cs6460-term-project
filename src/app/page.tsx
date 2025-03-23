@@ -1,54 +1,22 @@
-import {
-	Card,
-	CardHeader,
-	CardFooter,
-	CardTitle,
-	CardDescription,
-	CardContent,
-} from '@/components/ui/card';
-
-interface Recipe {
-	title: string;
-	image: string;
-	time: number;
-	description: string;
-	vegan: boolean;
-	id: string;
-}
-
-const getRecipes = async (): Promise<Recipe[]> => {
-	const result = await fetch('http://localhost:4000/recipes');
-	return result.json();
-};
-
 export default async function Home() {
-	const recipes = await getRecipes();
-
 	return (
-		<main>
-			<div className="grid grid-cols-3 gap-8">
-				{recipes.map((recipe) => (
-					<Card
-						key={recipe.id}
-						className="flex flex-col justify-between"
-					>
-						<CardHeader className="flex-row gap-4 items-center">
-							<div>
-								<CardTitle>{recipe.title}</CardTitle>
-								<CardDescription>
-									{recipe.time} mins to cook.
-								</CardDescription>
-							</div>
-						</CardHeader>
-						<CardContent>
-							<p>{recipe.description}</p>
-						</CardContent>
-						<CardFooter className="flex justify-between">
-							<button>View Recipe</button>
-							{recipe.vegan && <p>Vegan</p>}
-						</CardFooter>
-					</Card>
-				))}
+		<main className="flex justify-center">
+			<div className="text-3xl">
+				<h1>Hello! 👋</h1>
+				<p>
+					In this experiment, you&apos;ll complete a short survey
+					followed by three rounds of Raven&apos;s Progressive
+					Matrices puzzles — each while listening to a different genre
+					of music.
+				</p>
+				<p>
+					Your participation helps us understand how music genre
+					influences cognitive performance.
+				</p>
+				<p>
+					This study takes about 30 minutes to complete. Thank you for
+					contributing!
+				</p>
 			</div>
 		</main>
 	);
