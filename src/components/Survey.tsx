@@ -253,7 +253,7 @@ export default function Survey() {
 							render={({ field }) => {
 								return (
 									<FormItem>
-										<div className="grid md:grid-cols-[auto_1fr] gap-2">
+										<div className="grid md:grid-cols-[auto_1fr] gap-6">
 											<FormLabel className="flex justify-start">
 												How often do you listen to
 												music?
