@@ -17,7 +17,7 @@ const EDUCATION = [
 	"Associate degree (2-year college degree)",
 	"Bachelor's degree (e.g., BA, BS)",
 	"Master's degree (e.g., MA, MS, MBA)",
-	"Doctorate or professional degree (e.g., PhD, MD, JD)",
+	"Doctorate or professional degree (e.g., PhD)",
 	"Prefer not to say",
 ] as const;
 

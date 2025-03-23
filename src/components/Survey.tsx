@@ -65,7 +65,7 @@ export default function Survey() {
 	};
 
 	return (
-		<div className="max-w-3xl border border-gray-300 rounded-xl p-6 shadow-sm">
+		<div className="border border-gray-300 rounded-xl p-6 shadow-sm">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(handleSubmit)}
