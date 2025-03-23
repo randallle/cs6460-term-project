@@ -543,9 +543,11 @@ export default function Survey() {
 						/>
 						<Separator className="my-2" />
 					</section>
-					<Button type="submit" className="w-full">
-						Next Step
-					</Button>
+					<div className="flex justify-center">
+						<Button type="submit" className="w-3xs">
+							Next Step
+						</Button>
+					</div>
 				</form>
 			</Form>
 		</div>

@@ -28,7 +28,7 @@ export default async function Home() {
 					<Link href="/information">More information</Link>
 				</Button>
 				<Button asChild>
-					<Link href="">Get started →</Link>
+					<Link href="./preview/survey">Get started →</Link>
 				</Button>
 			</div>
 		</main>
