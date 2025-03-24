@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import {
 	Form,
 	FormField,
@@ -53,6 +54,7 @@ export default function Survey() {
 		resolver: zodResolver(formSchema),
 	});
 	const [resetGenres, setResetGenres] = useState(false);
+	const router = useRouter();
 
 	// Helper function to check if a field is required
 	const isFieldRequired = (fieldName: keyof z.infer<typeof formSchema>) => {
@@ -62,6 +64,7 @@ export default function Survey() {
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
 		console.log("Form data:", data);
+		router.push("/preview/board");
 	};
 
 	return (
@@ -462,7 +465,11 @@ export default function Survey() {
 										</FormLabel>
 										<FormControl>
 											<RadioGroup
-												onValueChange={field.onChange}
+												onValueChange={(value) =>
+													field.onChange(
+														Number(value)
+													)
+												}
 												defaultValue={String(
 													field.value
 												)}
@@ -511,7 +518,11 @@ export default function Survey() {
 										</FormLabel>
 										<FormControl>
 											<RadioGroup
-												onValueChange={field.onChange}
+												onValueChange={(value) =>
+													field.onChange(
+														Number(value)
+													)
+												}
 												defaultValue={String(
 													field.value
 												)}
