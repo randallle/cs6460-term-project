@@ -64,6 +64,7 @@ export default function Survey() {
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
 		console.log("Form data:", data);
+		// TODO: save data to session storage here
 		router.push("/preview/board");
 	};
 
