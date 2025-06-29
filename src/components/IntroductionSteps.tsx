@@ -129,7 +129,7 @@ export default function IntroductionSteps({
 							className="px-8 py-2"
 							size="lg"
 						>
-							Start Test
+							Start
 						</Button>
 					) : (
 						<Button
