@@ -10,40 +10,58 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import CountdownTimer from "@/components/CountdownTimer";
+import { TRIAL_NAMES } from "@/lib/constants";
 
 interface PreGameModalProps {
-	trialNumber: number;
-	trialName: string;
+	trialIndex: number;
+	setTrialIndex: React.Dispatch<React.SetStateAction<number>>;
 	startMusic: boolean;
 	setStartMusic: React.Dispatch<React.SetStateAction<boolean>>;
 	startGame: boolean;
 	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
+	trialComplete: boolean;
+	setTrialComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function PreGameModal({
-	trialNumber,
-	trialName,
+	trialIndex,
+	setTrialIndex,
 	startMusic,
 	setStartMusic,
 	startGame,
 	setStartGame,
+	trialComplete,
+	setTrialComplete,
 }: PreGameModalProps) {
 	return (
-		<Dialog open={!startGame} modal={true}>
+		<Dialog open={!startGame || trialComplete} modal={true}>
 			<DialogContent className="max-w-md">
 				<DialogHeader>
 					<DialogTitle className="text-xl font-semibold text-center">
-						Trial {trialNumber}: {trialName}
+						{`Trial ${trialIndex}${
+							trialComplete
+								? " Complete!"
+								: ": " + TRIAL_NAMES[trialIndex]
+						}`}
 					</DialogTitle>
 					<DialogDescription>
 						{!startMusic && (
 							<span>
 								Click &quot;Start Test&quot; to begin the
 								30-second period of{" "}
-								{trialName === "Silence"
-									? trialName.toLowerCase()
-									: `${trialName.toLowerCase()} music`}
+								{TRIAL_NAMES[trialIndex] === "Silence"
+									? TRIAL_NAMES[trialIndex].toLowerCase()
+									: `${TRIAL_NAMES[
+											trialIndex
+									  ].toLowerCase()} music`}
 								. After the 30 seconds, you will start answering
 								RPM problems.
+							</span>
+						)}
+
+						{trialComplete && (
+							<span>
+								Click the button below to proceed to the next
+								trial.
 							</span>
 						)}
 					</DialogDescription>
@@ -71,6 +89,21 @@ export default function PreGameModal({
 							className="px-8 py-3"
 						>
 							Start Test
+						</Button>
+					)}
+
+					{trialComplete && (
+						<Button
+							onClick={() => {
+								setTrialIndex((prev) => prev + 1);
+								setStartMusic((prev) => !prev);
+								setStartGame((prev) => !prev);
+								setTrialComplete((prev) => !prev);
+							}}
+							size="lg"
+							className="px-8 py-3"
+						>
+							Next Trial
 						</Button>
 					)}
 				</div>

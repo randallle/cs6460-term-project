@@ -40,6 +40,8 @@ const DEFAULT_GENRES = [
 
 const SCALE = Array.from({ length: 10 }, (_, i) => i + 1);
 
+const TRIAL_NAMES = ["Silence", "Classical", "Lo-Fi", "EDM"];
+
 export {
 	AGE_GROUPS,
 	GENDERS,
@@ -48,4 +50,5 @@ export {
 	FREQUENCIES,
 	DEFAULT_GENRES,
 	SCALE,
+	TRIAL_NAMES,
 };
