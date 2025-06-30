@@ -54,28 +54,6 @@ export async function prepareTrial() {
 		answer: number;
 	}
 
-	const lineup = getRandomProblemOrder();
-	const problems = [];
-	for (const id of lineup) {
-		const {
-			id: problemId,
-			title,
-			description,
-			matrix,
-			choices,
-			answer,
-		} = await fetchProblemById(id);
-
-		const problem: Problem = {
-			id: problemId,
-			title: title,
-			description: description,
-			matrix: matrix,
-			choices: choices,
-			answer: answer,
-		};
-
-		problems.push(problem);
-	}
-	return problems;
+	const problemLineUp = getRandomProblemOrder();
+	return problemLineUp;
 }

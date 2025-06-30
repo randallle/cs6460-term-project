@@ -5,6 +5,7 @@ import AnswerChoicesGrid from "@/components/AnswerChoicesGrid";
 import { useState } from "react";
 
 interface Problem {
+	id: string;
 	title: string;
 	description: string;
 	matrix: string[];

@@ -45,6 +45,14 @@ export async function fetchRandomProblemByDifficulty(difficulty: string) {
 }
 
 export async function fetchProblemById(id: string) {
+	interface Problem {
+		id: string;
+		title: string;
+		description: string;
+		matrix: string[];
+		choices: string[];
+		answer: number;
+	}
 	const problemsRef = collection(db, "problems");
 
 	// Query Firestore for the specific problem by ID
@@ -69,11 +77,12 @@ export async function fetchProblemById(id: string) {
 	);
 
 	// Return the problem data along with the images
-	return {
+	const problemObject: Problem = {
 		...(problemData as ProblemData),
 		matrix: matrixImages,
 		choices: choiceImages,
 	};
+	return problemObject;
 }
 
 async function fetchImagesFromStorage(folderPath: string) {
