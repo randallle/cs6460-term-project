@@ -37,6 +37,7 @@ export default function Game() {
 					setStartGame={setStartGame}
 				/>
 			)}
+			<CountdownTimer initialTime={2} />
 
 			{/* {(<EndTrialModal
 					trialIndex={trialIndex}
