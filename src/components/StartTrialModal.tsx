@@ -22,7 +22,7 @@ export default function StartTrialModal({
 	setStartMusic,
 }: StartTrialModalProps) {
 	return (
-		<Dialog>
+		<Dialog open={true} modal={true}>
 			<DialogContent className="max-w-md">
 				<DialogHeader>
 					<DialogTitle className="text-xl font-semibold text-center">
