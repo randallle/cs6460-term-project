@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { fetchProblemById } from "@/lib/firebaseUtils";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -41,4 +42,39 @@ export function getRandomProblemOrder(): string[] {
 
 	// Combine BASIC and CHALLENGE problems
 	return [...shuffledBasic, ...shuffledChallenge];
+}
+
+export async function prepareTrial() {
+	interface Problem {
+		id: string;
+		title: string;
+		description: string;
+		matrix: string[];
+		choices: string[];
+		answer: number;
+	}
+
+	const lineup = getRandomProblemOrder();
+	const problems = [];
+	for (const id of lineup) {
+		const {
+			id: problemId,
+			title,
+			description,
+			matrix,
+			choices,
+			answer,
+		} = await fetchProblemById(id);
+
+		const problem: Problem = {
+			id: problemId,
+			title: title,
+			description: description,
+			matrix: matrix,
+			choices: choices,
+			answer: answer,
+		};
+
+		problems.push(problem);
+	}
 }
