@@ -30,7 +30,7 @@ export default function RootLayout({
 			>
 				<nav className="mb-8">
 					<h1 className="font-black">
-						<Link href="/">CS 6795: Term Project</Link>
+						<Link href="/">CS 6460: Term Project</Link>
 					</h1>
 				</nav>
 				{children}
