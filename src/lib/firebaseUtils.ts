@@ -53,36 +53,43 @@ export async function fetchProblemById(id: string) {
 		choices: string[];
 		answer: number;
 	}
-	const problemsRef = collection(db, "problems");
 
-	// Query Firestore for the specific problem by ID
-	const q = query(problemsRef, where("id", "==", id));
-	const querySnapshot = await getDocs(q);
+	try {
+		const problemsRef = collection(db, "problems");
 
-	if (querySnapshot.empty) {
-		throw new Error(`No problem found with ID ${id}`);
+		const q = query(problemsRef, where("id", "==", id));
+
+		const querySnapshot = await getDocs(q);
+
+		if (querySnapshot.empty) {
+			throw new Error(`No problem found with ID ${id}`);
+		}
+
+		// Since IDs are unique, we expect only one document
+		const problem = querySnapshot.docs[0];
+		const problemData = problem.data();
+
+		// Fetch associated images from Firebase Storage
+		const matrixImages = await fetchImagesFromStorage(
+			`problems/${problemData.id}/matrix`
+		);
+
+		const choiceImages = await fetchImagesFromStorage(
+			`problems/${problemData.id}/choices`
+		);
+
+		// Return the problem data along with the images
+		const problemObject: Problem = {
+			...(problemData as ProblemData),
+			matrix: matrixImages,
+			choices: choiceImages,
+		};
+
+		return problemObject;
+	} catch (error) {
+		console.error("Error in fetchProblemById:", error);
+		throw error;
 	}
-
-	// Since IDs are unique, we expect only one document
-	const problem = querySnapshot.docs[0];
-	const problemData = problem.data();
-
-	// Fetch associated images from Firebase Storage
-	const matrixImages = await fetchImagesFromStorage(
-		`problems/${problemData.id}/matrix`
-	);
-
-	const choiceImages = await fetchImagesFromStorage(
-		`problems/${problemData.id}/choices`
-	);
-
-	// Return the problem data along with the images
-	const problemObject: Problem = {
-		...(problemData as ProblemData),
-		matrix: matrixImages,
-		choices: choiceImages,
-	};
-	return problemObject;
 }
 
 async function fetchImagesFromStorage(folderPath: string) {
