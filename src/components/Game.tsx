@@ -29,10 +29,12 @@ export default function Game() {
 				setTrialComplete={setTrialComplete}
 			/>
 			<CountdownTimer
-				initialTime={60}
+				initialTime={2}
 				onComplete={() => {
 					if (!trialComplete) {
 						setTrialComplete(true);
+						setStartGame(false);
+						setStartMusic(false);
 					}
 				}}
 				startCondition={startGame}

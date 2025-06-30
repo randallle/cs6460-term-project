@@ -20,6 +20,8 @@ interface PreGameModalProps {
 	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
 	trialComplete: boolean;
 	setTrialComplete: React.Dispatch<React.SetStateAction<boolean>>;
+	testComplete: boolean;
+	setTestComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function PreGameModal({
 	trialIndex,
@@ -30,6 +32,8 @@ export default function PreGameModal({
 	setStartGame,
 	trialComplete,
 	setTrialComplete,
+	testComplete,
+	setTestComplete,
 }: PreGameModalProps) {
 	return (
 		<Dialog open={!startGame || trialComplete} modal={true}>
@@ -43,7 +47,7 @@ export default function PreGameModal({
 						}`}
 					</DialogTitle>
 					<DialogDescription>
-						{!startMusic && (
+						{!startMusic && !trialComplete && !testComplete && (
 							<span>
 								Click &quot;Start Test&quot; to begin the
 								30-second period of{" "}
@@ -57,7 +61,7 @@ export default function PreGameModal({
 							</span>
 						)}
 
-						{trialComplete && (
+						{trialComplete && !testComplete && (
 							<span>
 								Click the button below to proceed to the next
 								trial.
@@ -67,13 +71,13 @@ export default function PreGameModal({
 				</DialogHeader>
 
 				<div className="flex flex-col items-center gap-6 mt-4">
-					{startMusic && !startGame && (
+					{startMusic && !startGame && !testComplete && (
 						<div className="text-center">
 							<p className="text-sm text-gray-600 mb-4">
 								Preparation time remaining:
 							</p>
 							<CountdownTimer
-								initialTime={5}
+								initialTime={2}
 								onComplete={() => {
 									setStartGame(true);
 								}}
@@ -81,7 +85,7 @@ export default function PreGameModal({
 						</div>
 					)}
 
-					{!startMusic && (
+					{!startMusic && !trialComplete && !testComplete && (
 						<Button
 							onClick={() => setStartMusic(true)}
 							size="lg"
@@ -91,12 +95,15 @@ export default function PreGameModal({
 						</Button>
 					)}
 
-					{trialComplete && (
+					{trialComplete && !testComplete && (
 						<Button
 							onClick={() => {
 								setTrialIndex((prev) => prev + 1);
-								setStartMusic(false);
+								if (trialIndex >= TRIAL_NAMES.length) {
+									setTestComplete(true);
+								}
 								setStartGame(false);
+								setStartMusic(false);
 								setTrialComplete(false);
 							}}
 							size="lg"
@@ -105,6 +112,8 @@ export default function PreGameModal({
 							Next Trial
 						</Button>
 					)}
+
+					{testComplete && <Button onClick={() => {}}>Submit</Button>}
 				</div>
 			</DialogContent>
 		</Dialog>
