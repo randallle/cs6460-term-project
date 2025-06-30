@@ -4,6 +4,7 @@ import { useState } from "react";
 import PreGameModal from "@/components/PreGameModal";
 import StartTrialModal from "@/components/StartTrialModal";
 import EndTrialModal from "@/components/EndTrialModal";
+import EndTestModal from "@/components/EndTestModal";
 
 export default function PreGameModalPreview() {
 	const [startMusic, setStartMusic] = useState(true);
@@ -19,14 +20,15 @@ export default function PreGameModalPreview() {
 		// 	setStartMusic={setStartMusic}
 		// />
 
-		<EndTrialModal
-			trialIndex={trialIndex}
-			startMusic={startMusic}
-			setTrialIndex={setTrialIndex}
-			setTestComplete={setTestComplete}
-			setStartGame={setStartGame}
-			setStartMusic={setStartMusic}
-			setTrialComplete={setTrialComplete}
-		/>
+		// <EndTrialModal
+		// 	trialIndex={trialIndex}
+		// 	startMusic={startMusic}
+		// 	setTrialIndex={setTrialIndex}
+		// 	setTestComplete={setTestComplete}
+		// 	setStartGame={setStartGame}
+		// 	setStartMusic={setStartMusic}
+		// 	setTrialComplete={setTrialComplete}
+		// />
+		<EndTestModal />
 	);
 }
