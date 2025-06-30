@@ -12,7 +12,6 @@ import { TRIAL_NAMES } from "@/lib/constants";
 
 interface EndTrialModalProps {
 	trialIndex: number;
-	startMusic: boolean;
 	setStartMusic: React.Dispatch<React.SetStateAction<boolean>>;
 	setTrialIndex: React.Dispatch<React.SetStateAction<number>>;
 	setTestComplete: React.Dispatch<React.SetStateAction<boolean>>;

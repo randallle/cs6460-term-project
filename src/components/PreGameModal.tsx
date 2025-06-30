@@ -7,18 +7,22 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog";
 import CountdownTimer from "@/components/CountdownTimer";
+import { TRIAL_NAMES } from "@/lib/constants";
 
 interface PreGameModalProps {
+	trialIndex: number;
 	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
-	trialComplete: boolean;
 }
-export default function PreGameModal({ setStartGame }: PreGameModalProps) {
+export default function PreGameModal({
+	trialIndex,
+	setStartGame,
+}: PreGameModalProps) {
 	return (
 		<Dialog open={true} modal={true}>
 			<DialogContent className="max-w-md">
 				<DialogHeader>
 					<DialogTitle className="text-xl font-semibold text-center">
-						Almost done!
+						{`Trial ${trialIndex}: ${TRIAL_NAMES[trialIndex]}`}
 					</DialogTitle>
 				</DialogHeader>
 				<div className="flex flex-col items-center gap-6 mt-4">

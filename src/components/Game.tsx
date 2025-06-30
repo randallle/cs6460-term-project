@@ -16,6 +16,7 @@ export default function Game() {
 	const [startMusic, setStartMusic] = useState(false);
 	const [startGame, setStartGame] = useState(false);
 	const [trialComplete, setTrialComplete] = useState(false);
+	const [testComplete, setTestComplete] = useState(false);
 
 	// timer for test
 	// board: pops problem from randomProblems
@@ -30,7 +31,21 @@ export default function Game() {
 				/>
 			)}
 
-			{startMusic && !startGame && <EndTestModal />}
+			{startMusic && !startGame && (
+				<PreGameModal
+					trialIndex={trialIndex}
+					setStartGame={setStartGame}
+				/>
+			)}
+
+			{/* {(<EndTrialModal
+					trialIndex={trialIndex}
+					setTrialIndex={setTrialIndex}
+					setTestComplete={setTestComplete}
+					setStartGame={setStartGame}
+					setStartMusic={setStartMusic}
+					setTrialComplete={setTrialComplete}
+				/>)} */}
 		</div>
 	);
 }
