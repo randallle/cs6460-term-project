@@ -12,13 +12,11 @@ import { TRIAL_NAMES } from "@/lib/constants";
 
 interface StartTrialModalProps {
 	trialIndex: number;
-	startMusic: boolean;
 	setStartMusic: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function StartTrialModal({
 	trialIndex,
-	startMusic,
 	setStartMusic,
 }: StartTrialModalProps) {
 	return (
