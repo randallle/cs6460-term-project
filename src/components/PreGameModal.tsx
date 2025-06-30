@@ -5,11 +5,8 @@ import {
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
-	DialogDescription,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import CountdownTimer from "@/components/CountdownTimer";
-import { TRIAL_NAMES } from "@/lib/constants";
 
 interface PreGameModalProps {
 	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
