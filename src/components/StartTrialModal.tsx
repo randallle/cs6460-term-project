@@ -38,7 +38,15 @@ export default function StartTrialModal({
 						problems.
 					</DialogDescription>
 				</DialogHeader>
-				<div className="flex flex-col items-center gap-6 mt-4"></div>
+				<div className="flex flex-col items-center gap-6 mt-4">
+					<Button
+						onClick={() => setStartMusic(true)}
+						size="lg"
+						className="px-8 py-3"
+					>
+						Start Test
+					</Button>
+				</div>
 			</DialogContent>
 		</Dialog>
 	);
