@@ -7,17 +7,30 @@ import { Card, CardContent } from "@/components/ui/card";
 interface CountdownTimerProps {
 	initialTime: number;
 	onComplete?: () => void;
+	startCondition?: boolean;
 }
 
 export default function CountdownTimer({
 	initialTime,
 	onComplete,
+	startCondition = true,
 }: CountdownTimerProps) {
 	const [timeLeft, setTimeLeft] = useState(initialTime);
+	const [isRunning, setIsRunning] = useState(false);
 
 	useEffect(() => {
+		if (startCondition && !isRunning) {
+			setTimeLeft(initialTime); // Reset timer when starting
+			setIsRunning(true);
+		}
+	}, [startCondition, isRunning, initialTime]);
+
+	useEffect(() => {
+		if (!isRunning) return;
+
 		if (timeLeft <= 0) {
 			onComplete?.();
+			setIsRunning(false);
 			return;
 		}
 
@@ -26,7 +39,7 @@ export default function CountdownTimer({
 		}, 1000);
 
 		return () => clearInterval(timer);
-	}, [timeLeft, onComplete]);
+	}, [timeLeft, isRunning, onComplete]);
 
 	return (
 		<div style={{ fontSize: "2rem", textAlign: "center" }}>

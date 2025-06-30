@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
 	Dialog,
 	DialogContent,
@@ -76,7 +75,7 @@ export default function PreGameModal({
 							<CountdownTimer
 								initialTime={5}
 								onComplete={() => {
-									setStartGame((prev) => !prev);
+									setStartGame(true);
 								}}
 							/>
 						</div>
@@ -84,7 +83,7 @@ export default function PreGameModal({
 
 					{!startMusic && (
 						<Button
-							onClick={() => setStartMusic((prev) => !prev)}
+							onClick={() => setStartMusic(true)}
 							size="lg"
 							className="px-8 py-3"
 						>
@@ -96,9 +95,9 @@ export default function PreGameModal({
 						<Button
 							onClick={() => {
 								setTrialIndex((prev) => prev + 1);
-								setStartMusic((prev) => !prev);
-								setStartGame((prev) => !prev);
-								setTrialComplete((prev) => !prev);
+								setStartMusic(false);
+								setStartGame(false);
+								setTrialComplete(false);
 							}}
 							size="lg"
 							className="px-8 py-3"
