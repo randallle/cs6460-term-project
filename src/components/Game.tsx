@@ -71,43 +71,4 @@ export default function Game() {
 		return <div>No problem available</div>;
 	}
 	return <Board problem={currentProblem} />;
-	// 	return (
-	// 		<div>
-	// 			{!startMusic && !startGame && (
-	// 				<StartTrialModal
-	// 					trialIndex={trialIndex}
-	// 					setStartMusic={setStartMusic}
-	// 				/>
-	// 			)}
-	// 			{startMusic && !startGame && (
-	// 				<PreGameModal
-	// 					trialIndex={trialIndex}
-	// 					setStartGame={setStartGame}
-	// 				/>
-	// 			)}
-	// 			{startGame && (
-	// 				<>
-	// 					<CountdownTimer
-	// 						initialTime={60}
-	// 						onComplete={() => setTrialComplete(true)}
-	// 						startCondition={startGame}
-	// 					/>
-	// 					<Board problem={problem} />
-	// 				</>
-	// 			)}
-	// 			{trialComplete && (
-	// 				<EndTrialModal
-	// 					trialIndex={trialIndex}
-	// 					setTrialIndex={setTrialIndex}
-	// 					setTestComplete={setTestComplete}
-	// 					setStartGame={setStartGame}
-	// 					setStartMusic={setStartMusic}
-	// 					setTrialComplete={setTrialComplete}
-	// 				/>
-	// 			)}
-	// 			{testComplete && (
-	// 				<EndTestModal onSubmit={() => console.log("Test completed")} />
-	// 			)}
-	// 		</div>
-	// 	);
 }
