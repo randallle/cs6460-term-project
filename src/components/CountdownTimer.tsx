@@ -17,13 +17,18 @@ export default function CountdownTimer({
 }: CountdownTimerProps) {
 	const [timeLeft, setTimeLeft] = useState(initialTime);
 	const [isRunning, setIsRunning] = useState(false);
+	const [hasStarted, setHasStarted] = useState(false);
 
 	useEffect(() => {
-		if (startCondition && !isRunning) {
+		if (startCondition && !hasStarted) {
 			setTimeLeft(initialTime); // Reset timer when starting
 			setIsRunning(true);
+			setHasStarted(true);
+		} else if (!startCondition) {
+			setHasStarted(false);
+			setIsRunning(false);
 		}
-	}, [startCondition, isRunning, initialTime]);
+	}, [startCondition, hasStarted, initialTime]);
 
 	useEffect(() => {
 		if (!isRunning) return;

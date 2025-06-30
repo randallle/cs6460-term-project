@@ -29,6 +29,7 @@ export default function PreGameModalPreview() {
 		// 	setStartMusic={setStartMusic}
 		// 	setTrialComplete={setTrialComplete}
 		// />
-		<EndTestModal />
+		// <EndTestModal />
+		<PreGameModal setStartGame={setStartGame}></PreGameModal>
 	);
 }
