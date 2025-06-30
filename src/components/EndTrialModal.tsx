@@ -41,13 +41,16 @@ export default function EndTrialModal({
 				<div className="flex flex-col items-center gap-6 mt-4">
 					<Button
 						onClick={() => {
-							setTrialIndex((prev) => prev + 1);
+							if (trialIndex < TRIAL_NAMES.length) {
+								setTrialIndex((prev) => prev + 1);
+								setStartGame(false);
+								setStartMusic(false);
+								setTrialComplete(false);
+							}
 							if (trialIndex >= TRIAL_NAMES.length) {
+								console.log(trialIndex >= TRIAL_NAMES.length);
 								setTestComplete(true);
 							}
-							setStartGame(false);
-							setStartMusic(false);
-							setTrialComplete(false);
 						}}
 						size="lg"
 						className="px-8 py-3"
