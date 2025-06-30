@@ -2,6 +2,7 @@ import Board from "@/components/Board";
 import { fetchProblemById } from "@/lib/firebaseUtils";
 
 interface Problem {
+	id: string;
 	title: string;
 	description: string;
 	matrix: string[];
@@ -11,7 +12,7 @@ interface Problem {
 
 export default async function BoardPreview() {
 	const {
-		// id: problemId,
+		id: problemId,
 		title,
 		description,
 		matrix,
@@ -19,6 +20,7 @@ export default async function BoardPreview() {
 		answer,
 	} = await fetchProblemById("BB09");
 	const problem: Problem = {
+		id: problemId,
 		title: title,
 		description: description,
 		matrix: matrix,
