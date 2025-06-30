@@ -25,8 +25,18 @@ export default function StartTrialModal({
 		<Dialog>
 			<DialogContent className="max-w-md">
 				<DialogHeader>
-					<DialogTitle className="text-xl font-semibold text-center"></DialogTitle>
-					<DialogDescription></DialogDescription>
+					<DialogTitle className="text-xl font-semibold text-center">
+						{`Trial ${trialIndex}: ${TRIAL_NAMES[trialIndex]}`}
+					</DialogTitle>
+					<DialogDescription>
+						Click &quot;Start Test&quot; to begin the 30-second
+						period of{" "}
+						{TRIAL_NAMES[trialIndex] === "Silence"
+							? TRIAL_NAMES[trialIndex].toLowerCase()
+							: `${TRIAL_NAMES[trialIndex].toLowerCase()} music`}
+						. After the 30 seconds, you will start answering RPM
+						problems.
+					</DialogDescription>
 				</DialogHeader>
 				<div className="flex flex-col items-center gap-6 mt-4"></div>
 			</DialogContent>
