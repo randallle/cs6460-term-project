@@ -16,29 +16,5 @@ export default function Game() {
 	// timer for test
 	// board: pops problem from randomProblems
 	// submit button: save to sessionStorage
-	return (
-		<div>
-			<PreGameModal
-				trialIndex={trialIndex}
-				setTrialIndex={setTrialIndex}
-				startMusic={startMusic}
-				setStartMusic={setStartMusic}
-				startGame={startGame}
-				setStartGame={setStartGame}
-				trialComplete={trialComplete}
-				setTrialComplete={setTrialComplete}
-			/>
-			<CountdownTimer
-				initialTime={}
-				onComplete={() => {
-					if (!trialComplete) {
-						setTrialComplete(true);
-						setStartGame(false);
-						setStartMusic(false);
-					}
-				}}
-				startCondition={startGame}
-			></CountdownTimer>
-		</div>
-	);
+	return <div></div>;
 }
