@@ -30,10 +30,7 @@ export default function Game() {
 				/>
 			)}
 
-			{/* {startMusic && !startGame && (
-				<EndTestModal
-                />
-			)} */}
+			{startMusic && !startGame && <EndTestModal />}
 		</div>
 	);
 }

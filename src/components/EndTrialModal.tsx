@@ -22,7 +22,6 @@ interface EndTrialModalProps {
 
 export default function EndTrialModal({
 	trialIndex,
-	startMusic,
 	setTrialIndex,
 	setTestComplete,
 	setStartGame,
