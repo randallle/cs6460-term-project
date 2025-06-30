@@ -77,4 +77,5 @@ export async function prepareTrial() {
 
 		problems.push(problem);
 	}
+	return problems;
 }
