@@ -21,7 +21,7 @@ export default function Board({ problem }: BoardProps) {
 	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	return (
-		<div>
+		<main>
 			<h2 className="flex justify-end">Select an answer below</h2>
 			<div className="grid grid-cols-2">
 				<div className="mt-10">
@@ -39,6 +39,6 @@ export default function Board({ problem }: BoardProps) {
 					/>
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 }
