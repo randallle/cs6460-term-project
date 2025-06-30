@@ -29,7 +29,7 @@ export default function Game() {
 				setTrialComplete={setTrialComplete}
 			/>
 			<CountdownTimer
-				initialTime={2}
+				initialTime={}
 				onComplete={() => {
 					if (!trialComplete) {
 						setTrialComplete(true);
