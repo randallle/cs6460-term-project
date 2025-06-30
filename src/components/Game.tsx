@@ -1,87 +1,105 @@
+// "use client";
+
+// import { getRandomProblemOrder } from "@/lib/utils";
+// import { fetchRandomProblemByDifficulty } from "@/lib/firebaseUtils";
+// import { useState, useEffect } from "react";
+// import StartTrialModal from "@/components/StartTrialModal";
+// import PreGameModal from "@/components/PreGameModal";
+// import EndTrialModal from "@/components/EndTrialModal";
+// import EndTestModal from "@/components/EndTestModal";
+// import CountdownTimer from "@/components/CountdownTimer";
 // import Board from "@/components/Board";
-import { getRandomProblemOrder } from "@/lib/utils";
-import { fetchRandomProblemByDifficulty } from "@/lib/firebaseUtils";
 
-import { useState } from "react";
-import StartTrialModal from "@/components/StartTrialModal";
-import PreGameModal from "@/components/PreGameModal";
-import EndTrialModal from "@/components/EndTrialModal";
-import EndTestModal from "@/components/EndTestModal";
+// interface Problem {
+// 	title: string;
+// 	description: string;
+// 	matrix: string[];
+// 	choices: string[];
+// 	answer: number;
+// }
 
-import CountdownTimer from "@/components/CountdownTimer";
-import Board from "@/components/Board";
-// import { TRIAL_NAMES } from "@/lib/constants";
+// export default function Game() {
+// 	const [trialIndex, setTrialIndex] = useState(0);
+// 	const [startMusic, setStartMusic] = useState(false);
+// 	const [startGame, setStartGame] = useState(false);
+// 	const [trialComplete, setTrialComplete] = useState(false);
+// 	const [testComplete, setTestComplete] = useState(false);
+// 	const [problems, setProblems] = useState(getRandomProblemOrder());
+// 	const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
+// 	const [problem, setProblem] = useState<Problem | null>(null);
+// 	const [loading, setLoading] = useState(true);
 
-interface Problem {
-	title: string;
-	description: string;
-	matrix: string[];
-	choices: string[];
-	answer: number;
-}
+// 	// Fetch problem data on component mount and when currentProblemIndex changes
+// 	useEffect(() => {
+// 		async function loadProblem() {
+// 			try {
+// 				setLoading(true);
+// 				const { title, description, matrix, choices, answer } =
+// 					await fetchProblemById(
+// 						problems[currentProblemIndex]
+// 					);
 
-export default async function Game() {
-	const [trialIndex, setTrialIndex] = useState(0);
-	const [startMusic, setStartMusic] = useState(false);
-	const [startGame, setStartGame] = useState(false);
-	const [trialComplete, setTrialComplete] = useState(false);
-	const [testComplete, setTestComplete] = useState(false);
-	const [problems, setProblems] = useState(getRandomProblemOrder());
-	const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
+// 				setProblem({
+// 					title,
+// 					description,
+// 					matrix,
+// 					choices,
+// 					answer,
+// 				});
+// 			} catch (error) {
+// 				console.error("Error fetching problem:", error);
+// 			} finally {
+// 				setLoading(false);
+// 			}
+// 		}
 
-	// timer for test
-	// board: pops problem from randomProblems
-	// submit button: save answers
+// 		loadProblem();
+// 	}, [problems, currentProblemIndex]);
 
-	const {
-		// id: problemId,
-		title,
-		description,
-		matrix,
-		choices,
-		answer,
-	} = await fetchRandomProblemByDifficulty(problems[currentProblemIndex]);
+// 	if (loading || !problem) {
+// 		return <div>Loading...</div>;
+// 	}
+// 	return (
+// 		<div>
+// 			{!startMusic && !startGame && (
+// 				<StartTrialModal
+// 					trialIndex={trialIndex}
+// 					setStartMusic={setStartMusic}
+// 				/>
+// 			)}
 
-	const problem: Problem = {
-		title: title,
-		description: description,
-		matrix: matrix,
-		choices: choices,
-		answer: answer,
-	};
-	return (
-		<div>
-			{!startMusic && !startGame && (
-				<StartTrialModal
-					trialIndex={trialIndex}
-					startMusic={startMusic}
-					setStartMusic={setStartMusic}
-				/>
-			)}
+// 			{startMusic && !startGame && (
+// 				<PreGameModal
+// 					trialIndex={trialIndex}
+// 					setStartGame={setStartGame}
+// 				/>
+// 			)}
 
-			{startMusic && !startGame && (
-				<PreGameModal
-					trialIndex={trialIndex}
-					setStartGame={setStartGame}
-				/>
-			)}
+// 			{startGame && (
+// 				<>
+// 					<CountdownTimer
+// 						initialTime={60}
+// 						onComplete={() => setTrialComplete(true)}
+// 						startCondition={startGame}
+// 					/>
+// 					<Board problem={problem} />
+// 				</>
+// 			)}
 
-			{/* {(<EndTrialModal
-					trialIndex={trialIndex}
-					setTrialIndex={setTrialIndex}
-					setTestComplete={setTestComplete}
-					setStartGame={setStartGame}
-					setStartMusic={setStartMusic}
-					setTrialComplete={setTrialComplete}
-				/>)} */}
-			<CountdownTimer
-				initialTime={2}
-				onComplete={() => {}}
-				startCondition={startGame}
-			/>
+// 			{trialComplete && (
+// 				<EndTrialModal
+// 					trialIndex={trialIndex}
+// 					setTrialIndex={setTrialIndex}
+// 					setTestComplete={setTestComplete}
+// 					setStartGame={setStartGame}
+// 					setStartMusic={setStartMusic}
+// 					setTrialComplete={setTrialComplete}
+// 				/>
+// 			)}
 
-			<Board problem={problem} />
-			{/* <main></main> */}
-		</div>
-	);
-}
+// 			{testComplete && (
+// 				<EndTestModal onSubmit={() => console.log("Test completed")} />
+// 			)}
+// 		</div>
+// 	);
+// }

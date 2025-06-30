@@ -1,5 +1,5 @@
 import Board from "@/components/Board";
-import { fetchRandomProblemByDifficulty } from "@/lib/firebaseUtils";
+import { fetchProblemById } from "@/lib/firebaseUtils";
 
 interface Problem {
 	title: string;
@@ -17,7 +17,7 @@ export default async function BoardPreview() {
 		matrix,
 		choices,
 		answer,
-	} = await fetchRandomProblemByDifficulty("B");
+	} = await fetchProblemById("BB09");
 	const problem: Problem = {
 		title: title,
 		description: description,
