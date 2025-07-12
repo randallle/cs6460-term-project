@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import {
 	Dialog,
 	DialogContent,
@@ -10,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default function EndTestModal() {
+	const router = useRouter();
+
 	return (
 		<Dialog open={true} modal={true}>
 			<DialogContent className="max-w-md">
@@ -22,7 +26,13 @@ export default function EndTestModal() {
 					</DialogDescription>
 				</DialogHeader>
 				<div className="flex flex-col items-center gap-6 mt-4">
-					<Button onClick={() => {}}>Submit</Button>
+					<Button
+						onClick={() => {
+							router.push("/experiment/end");
+						}}
+					>
+						Submit
+					</Button>
 				</div>
 			</DialogContent>
 		</Dialog>
