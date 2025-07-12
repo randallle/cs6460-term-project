@@ -12,11 +12,9 @@ import { TRIAL_NAMES } from "@/lib/constants";
 
 interface EndTrialModalProps {
 	trialIndex: number;
-	setStartMusic: React.Dispatch<React.SetStateAction<boolean>>;
 	setTrialIndex: React.Dispatch<React.SetStateAction<number>>;
 	setTestComplete: React.Dispatch<React.SetStateAction<boolean>>;
 	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
-	setTrialComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function EndTrialModal({
@@ -24,8 +22,6 @@ export default function EndTrialModal({
 	setTrialIndex,
 	setTestComplete,
 	setStartGame,
-	setStartMusic,
-	setTrialComplete,
 }: EndTrialModalProps) {
 	return (
 		<Dialog open={true} modal={true}>
@@ -42,8 +38,6 @@ export default function EndTrialModal({
 							if (trialIndex < TRIAL_NAMES.length) {
 								setTrialIndex((prev) => prev + 1);
 								setStartGame(false);
-								setStartMusic(false);
-								setTrialComplete(false);
 							}
 							if (trialIndex >= TRIAL_NAMES.length) {
 								console.log(trialIndex >= TRIAL_NAMES.length);
