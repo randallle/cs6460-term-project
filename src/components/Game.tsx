@@ -7,6 +7,7 @@ import Board from "@/components/Board";
 import PreGameModal from "@/components/PreGameModal";
 import StartTrialModal from "@/components/StartTrialModal";
 import EndTrialModal from "@/components/EndTrialModal";
+import EndTestModal from "@/components/EndTestModal";
 import CountdownTimer from "@/components/CountdownTimer";
 import { Button } from "@/components/ui/button";
 
@@ -119,6 +120,8 @@ export default function Game() {
 					setShowStartTrialModal={setShowStartTrialModal}
 				/>
 			)}
+
+			{testComplete && <EndTestModal />}
 
 			{/* Background content with conditional blur */}
 			<div className={startGame ? "" : "blur-2xl"}>
