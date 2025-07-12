@@ -74,7 +74,7 @@ export default function IntroductionSteps({
 	const currentStepData = steps[currentStep];
 
 	return (
-		<div className="h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-8 bg-gray-50">
+		<div className="h-[calc(100vh-4rem)] flex flex-col items-center justify-center bg-gray-50">
 			<div className="w-full max-w-2xl">
 				{/* Main content card */}
 				<Card className="mb-8">
