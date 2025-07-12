@@ -36,6 +36,7 @@ export default function Game() {
 	const [trialIndex, setTrialIndex] = useState(0);
 	const [trialComplete, setTrialComplete] = useState(true);
 	const [testComplete, setTestComplete] = useState(false);
+	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	// Initialize problem lineup on component mount
 	useEffect(() => {
@@ -57,6 +58,8 @@ export default function Game() {
 				const problem = await fetchProblemById(problemId);
 
 				setCurrentProblem(problem);
+				// Reset selected answer when loading a new problem
+				setSelectedAnswer(-1);
 			} catch (err) {
 				console.error(
 					"Problem ID that failed:",
@@ -106,18 +109,27 @@ export default function Game() {
 			)}
 
 			{/* Background content with conditional blur */}
-			<div className={startGame ? "" : "blur-sm"}>
-				<div className="pt-10">
+			<div className={startGame ? "" : "blur-2xl"}>
+				<div className="pt-5">
 					<CountdownTimer
-						initialTime={60}
+						initialTime={5}
 						onComplete={() => {}}
 						startCondition={startGame}
 					/>
 				</div>
 
-				<Board problem={currentProblem} />
+				<Board
+					problem={currentProblem}
+					selectedAnswer={selectedAnswer}
+					setSelectedAnswer={setSelectedAnswer}
+				/>
 				<div className="flex justify-center mt-4">
-					<Button onClick={() => {}} size="lg" className="px-8 py-3">
+					<Button
+						onClick={() => {}}
+						size="lg"
+						className="px-8 py-3"
+						disabled={selectedAnswer === -1}
+					>
 						Submit
 					</Button>
 				</div>

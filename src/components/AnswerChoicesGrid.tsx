@@ -7,7 +7,7 @@ import AnswerChoice from "./AnswerChoice";
 interface AnswerChoicesGridProps {
 	choices: string[];
 	selectedAnswer: number;
-	setSelectedAnswer: (choice: number) => void;
+	setSelectedAnswer: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function AnswerChoicesGrid({

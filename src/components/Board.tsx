@@ -2,7 +2,6 @@
 
 import Matrix from "./Matrix";
 import AnswerChoicesGrid from "@/components/AnswerChoicesGrid";
-import { useState } from "react";
 
 interface Problem {
 	id: string;
@@ -15,11 +14,16 @@ interface Problem {
 
 interface BoardProps {
 	problem: Problem;
+	selectedAnswer: number;
+	setSelectedAnswer: (answer: number) => void;
 }
 
-export default function Board({ problem }: BoardProps) {
+export default function Board({
+	problem,
+	selectedAnswer,
+	setSelectedAnswer,
+}: BoardProps) {
 	const { matrix, choices } = problem;
-	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	return (
 		<main>
