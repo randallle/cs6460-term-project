@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getRandomProblemOrder } from "@/lib/utils";
 import { fetchProblemById } from "@/lib/firebaseUtils";
 import Board from "@/components/Board";
+import PreGameModal from "@/components/PreGameModal";
+import StartTrialModal from "@/components/StartTrialModal";
 
 interface Problem {
 	id: string;
@@ -15,11 +17,23 @@ interface Problem {
 }
 
 export default function Game() {
+	// Problem states
 	const [lineUp, setLineUp] = useState<string[]>([]);
 	const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
 	const [currentProblem, setCurrentProblem] = useState<Problem | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+
+	// Modal states
+	const [showStartTrialModal, setShowStartTrialModal] = useState(true);
+	const [showPreGameModal, setShowPreGameModal] = useState(false);
+
+	// Game states
+	const [startMusic, setStartMusic] = useState(true);
+	const [startGame, setStartGame] = useState(true);
+	const [trialIndex, setTrialIndex] = useState(0);
+	const [trialComplete, setTrialComplete] = useState(true);
+	const [testComplete, setTestComplete] = useState(false);
 
 	// Initialize problem lineup on component mount
 	useEffect(() => {
@@ -70,5 +84,26 @@ export default function Game() {
 	if (!currentProblem) {
 		return <div>No problem available</div>;
 	}
-	return <Board problem={currentProblem} />;
+	return (
+		<div>
+			{showStartTrialModal && (
+				<StartTrialModal
+					trialIndex={trialIndex}
+					setStartMusic={setStartMusic}
+					setShowStartTrialModal={setShowStartTrialModal}
+					setShowPreGameModal={setShowPreGameModal}
+				/>
+			)}
+
+			{showPreGameModal && (
+				<PreGameModal
+					trialIndex={trialIndex}
+					setStartGame={setStartGame}
+					setShowPreGameModal={setShowPreGameModal}
+				/>
+			)}
+
+			<Board problem={currentProblem} />
+		</div>
+	);
 }

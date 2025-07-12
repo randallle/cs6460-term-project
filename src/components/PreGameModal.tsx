@@ -12,10 +12,12 @@ import { TRIAL_NAMES } from "@/lib/constants";
 interface PreGameModalProps {
 	trialIndex: number;
 	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowPreGameModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export default function PreGameModal({
 	trialIndex,
 	setStartGame,
+	setShowPreGameModal,
 }: PreGameModalProps) {
 	return (
 		<Dialog open={true} modal={true}>
@@ -34,6 +36,7 @@ export default function PreGameModal({
 							initialTime={2}
 							onComplete={() => {
 								setStartGame(true);
+								setShowPreGameModal(false);
 							}}
 						/>
 					</div>

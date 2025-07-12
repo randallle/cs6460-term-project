@@ -13,11 +13,15 @@ import { TRIAL_NAMES } from "@/lib/constants";
 interface StartTrialModalProps {
 	trialIndex: number;
 	setStartMusic: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowStartTrialModal: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowPreGameModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function StartTrialModal({
 	trialIndex,
 	setStartMusic,
+	setShowStartTrialModal,
+	setShowPreGameModal,
 }: StartTrialModalProps) {
 	return (
 		<Dialog open={true} modal={true}>
@@ -38,7 +42,11 @@ export default function StartTrialModal({
 				</DialogHeader>
 				<div className="flex flex-col items-center gap-6 mt-4">
 					<Button
-						onClick={() => setStartMusic(true)}
+						onClick={() => {
+							setStartMusic(true);
+							setShowStartTrialModal(false);
+							setShowPreGameModal(true);
+						}}
 						size="lg"
 						className="px-8 py-3"
 					>

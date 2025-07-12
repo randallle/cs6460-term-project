@@ -14,11 +14,10 @@ export default function PreGameModalPreview() {
 	const [testComplete, setTestComplete] = useState(false);
 
 	return (
-		// <StartTrialModal
-		// 	trialIndex={trialIndex}
-		// 	startMusic={startMusic}
-		// 	setStartMusic={setStartMusic}
-		// />
+		<StartTrialModal
+			trialIndex={trialIndex}
+			setStartMusic={setStartMusic}
+		/>
 
 		// <EndTrialModal
 		// 	trialIndex={trialIndex}
@@ -30,6 +29,9 @@ export default function PreGameModalPreview() {
 		// 	setTrialComplete={setTrialComplete}
 		// />
 		// <EndTestModal />
-		<PreGameModal setStartGame={setStartGame}></PreGameModal>
+		// <PreGameModal
+		// 	trialIndex={trialIndex}
+		// 	setStartGame={setStartGame}
+		// ></PreGameModal>
 	);
 }
