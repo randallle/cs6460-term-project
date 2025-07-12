@@ -7,6 +7,7 @@ import Board from "@/components/Board";
 import PreGameModal from "@/components/PreGameModal";
 import StartTrialModal from "@/components/StartTrialModal";
 import CountdownTimer from "@/components/CountdownTimer";
+import { Button } from "@/components/ui/button";
 
 interface Problem {
 	id: string;
@@ -104,15 +105,23 @@ export default function Game() {
 				/>
 			)}
 
-			<div className="pt-10">
-				<CountdownTimer
-					initialTime={60}
-					onComplete={() => {}}
-					startCondition={startGame}
-				/>
-			</div>
+			{/* Background content with conditional blur */}
+			<div className={startGame ? "" : "blur-sm"}>
+				<div className="pt-10">
+					<CountdownTimer
+						initialTime={60}
+						onComplete={() => {}}
+						startCondition={startGame}
+					/>
+				</div>
 
-			<Board problem={currentProblem} />
+				<Board problem={currentProblem} />
+				<div className="flex justify-center mt-4">
+					<Button onClick={() => {}} size="lg" className="px-8 py-3">
+						Submit Choice
+					</Button>
+				</div>
+			</div>
 		</div>
 	);
 }
