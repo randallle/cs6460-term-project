@@ -74,29 +74,8 @@ export default function IntroductionSteps({
 	const currentStepData = steps[currentStep];
 
 	return (
-		<div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gray-50">
+		<div className="h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-8 bg-gray-50">
 			<div className="w-full max-w-2xl">
-				{/* Progress indicator */}
-				<div className="mb-8">
-					<div className="flex justify-center gap-2 mb-4">
-						{steps.map((_, index) => (
-							<div
-								key={index}
-								className={`w-3 h-3 rounded-full transition-colors ${
-									index === currentStep
-										? "bg-blue-500"
-										: index < currentStep
-										? "bg-blue-300"
-										: "bg-gray-300"
-								}`}
-							/>
-						))}
-					</div>
-					<div className="text-center text-sm text-gray-500">
-						Step {currentStep + 1} of {steps.length}
-					</div>
-				</div>
-
 				{/* Main content card */}
 				<Card className="mb-8">
 					<CardHeader className="text-center">
@@ -142,6 +121,27 @@ export default function IntroductionSteps({
 					)}
 				</div>
 			</div>
+
+			{/* Progress indicator */}
+			{/* <div className="mb-8">
+					<div className="flex justify-center gap-2 mb-4">
+						{steps.map((_, index) => (
+							<div
+								key={index}
+								className={`w-3 h-3 rounded-full transition-colors ${
+									index === currentStep
+										? "bg-blue-500"
+										: index < currentStep
+										? "bg-blue-300"
+										: "bg-gray-300"
+								}`}
+							/>
+						))}
+					</div>
+					<div className="text-center text-sm text-gray-500">
+						Step {currentStep + 1} of {steps.length}
+					</div>
+				</div> */}
 		</div>
 	);
 }
