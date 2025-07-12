@@ -118,7 +118,7 @@ export default function Game() {
 				<Board problem={currentProblem} />
 				<div className="flex justify-center mt-4">
 					<Button onClick={() => {}} size="lg" className="px-8 py-3">
-						Submit Choice
+						Submit
 					</Button>
 				</div>
 			</div>
