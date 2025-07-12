@@ -14,14 +14,12 @@ interface EndTrialModalProps {
 	trialIndex: number;
 	setTrialIndex: React.Dispatch<React.SetStateAction<number>>;
 	setTestComplete: React.Dispatch<React.SetStateAction<boolean>>;
-	setStartGame: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function EndTrialModal({
 	trialIndex,
 	setTrialIndex,
 	setTestComplete,
-	setStartGame,
 }: EndTrialModalProps) {
 	return (
 		<Dialog open={true} modal={true}>
@@ -37,7 +35,6 @@ export default function EndTrialModal({
 						onClick={() => {
 							if (trialIndex < TRIAL_NAMES.length) {
 								setTrialIndex((prev) => prev + 1);
-								setStartGame(false);
 							}
 							if (trialIndex >= TRIAL_NAMES.length) {
 								console.log(trialIndex >= TRIAL_NAMES.length);
