@@ -6,6 +6,7 @@ import { fetchProblemById } from "@/lib/firebaseUtils";
 import Board from "@/components/Board";
 import PreGameModal from "@/components/PreGameModal";
 import StartTrialModal from "@/components/StartTrialModal";
+import CountdownTimer from "@/components/CountdownTimer";
 
 interface Problem {
 	id: string;
@@ -29,8 +30,8 @@ export default function Game() {
 	const [showPreGameModal, setShowPreGameModal] = useState(false);
 
 	// Game states
-	const [startMusic, setStartMusic] = useState(true);
-	const [startGame, setStartGame] = useState(true);
+	const [startMusic, setStartMusic] = useState(false);
+	const [startGame, setStartGame] = useState(false);
 	const [trialIndex, setTrialIndex] = useState(0);
 	const [trialComplete, setTrialComplete] = useState(true);
 	const [testComplete, setTestComplete] = useState(false);
@@ -85,7 +86,7 @@ export default function Game() {
 		return <div>No problem available</div>;
 	}
 	return (
-		<div>
+		<div className="relative">
 			{showStartTrialModal && (
 				<StartTrialModal
 					trialIndex={trialIndex}
@@ -102,6 +103,14 @@ export default function Game() {
 					setShowPreGameModal={setShowPreGameModal}
 				/>
 			)}
+
+			<div className="pt-10">
+				<CountdownTimer
+					initialTime={60}
+					onComplete={() => {}}
+					startCondition={startGame}
+				/>
+			</div>
 
 			<Board problem={currentProblem} />
 		</div>

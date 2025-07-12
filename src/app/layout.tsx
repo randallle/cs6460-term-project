@@ -28,11 +28,11 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen overflow-hidden`}
 			>
-				<nav className="mb-8">
+				{/* <nav className="mb-8">
 					<h1 className="font-black">
 						<Link href="/">CS 6460: Term Project</Link>
 					</h1>
-				</nav>
+				</nav> */}
 				{children}
 			</body>
 		</html>
