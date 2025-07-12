@@ -6,6 +6,7 @@ import { fetchProblemById } from "@/lib/firebaseUtils";
 import Board from "@/components/Board";
 import PreGameModal from "@/components/PreGameModal";
 import StartTrialModal from "@/components/StartTrialModal";
+import EndTrialModal from "@/components/EndTrialModal";
 import CountdownTimer from "@/components/CountdownTimer";
 import { Button } from "@/components/ui/button";
 
@@ -29,6 +30,7 @@ export default function Game() {
 	// Modal states
 	const [showStartTrialModal, setShowStartTrialModal] = useState(true);
 	const [showPreGameModal, setShowPreGameModal] = useState(false);
+	const [showEndTrialModal, setShowEndTrialModal] = useState(false);
 
 	// Game states
 	const [startMusic, setStartMusic] = useState(false);
@@ -108,12 +110,25 @@ export default function Game() {
 				/>
 			)}
 
+			{showEndTrialModal && (
+				<EndTrialModal
+					trialIndex={trialIndex}
+					setTrialIndex={setTrialIndex}
+					setTestComplete={setTestComplete}
+					setShowEndTrialModal={setShowEndTrialModal}
+					setShowStartTrialModal={setShowStartTrialModal}
+				/>
+			)}
+
 			{/* Background content with conditional blur */}
 			<div className={startGame ? "" : "blur-2xl"}>
 				<div className="pt-5">
 					<CountdownTimer
-						initialTime={5}
-						onComplete={() => {}}
+						initialTime={1}
+						onComplete={() => {
+							setStartGame(false);
+							setShowEndTrialModal(true);
+						}}
 						startCondition={startGame}
 					/>
 				</div>
