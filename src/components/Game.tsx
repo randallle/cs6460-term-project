@@ -43,7 +43,6 @@ export default function Game() {
 	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	// Audio states
-	const [playAudio, setPlayAudio] = useState(false);
 	const audioRef = useRef<HTMLAudioElement>(null);
 
 	// Initialize problem lineup on component mount
@@ -86,6 +85,37 @@ export default function Game() {
 		loadCurrentProblem();
 	}, [lineUp, currentProblemIndex]);
 
+	// Add audio control effect
+	useEffect(() => {
+		if (!startMusic || !audioRef.current) return;
+
+		const audioFile =
+			trialIndex == 0
+				? null
+				: `/${TRIAL_NAMES[trialIndex].toLowerCase()}.mp3`;
+
+		if (audioFile) {
+			audioRef.current.src = audioFile;
+			audioRef.current.loop = true;
+			audioRef.current.play().catch(console.error);
+		}
+
+		// Cleanup function to stop audio
+		return () => {
+			if (audioRef.current) {
+				audioRef.current.pause();
+				audioRef.current.currentTime = 0;
+			}
+		};
+	}, [startMusic, trialIndex]);
+
+	// Stop audio when game ends
+	useEffect(() => {
+		if (!startGame && audioRef.current) {
+			audioRef.current.pause();
+		}
+	}, [startGame]);
+
 	if (loading) {
 		return <div>Loading problem...</div>;
 	}
@@ -99,6 +129,8 @@ export default function Game() {
 	}
 	return (
 		<div className="relative">
+			<audio ref={audioRef} preload="auto" />
+
 			{showStartTrialModal && (
 				<StartTrialModal
 					trialIndex={trialIndex}
@@ -128,6 +160,7 @@ export default function Game() {
 							// Move to next trial and show start modal
 							setTrialIndex((prev) => prev + 1);
 							setShowStartTrialModal(true);
+							setStartMusic(false);
 						}
 					}}
 				/>
@@ -137,7 +170,7 @@ export default function Game() {
 			<div className={startGame ? "" : "blur-3xl"}>
 				<div className="pt-5">
 					<CountdownTimer
-						initialTime={1}
+						initialTime={5}
 						onComplete={() => {
 							setStartGame(false);
 							setShowEndTrialModal(true);
