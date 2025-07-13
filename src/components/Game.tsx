@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { getRandomProblemOrder } from "@/lib/utils";
 import { fetchProblemById } from "@/lib/firebaseUtils";
+import { TRIAL_NAMES } from "@/lib/constants";
 import Board from "@/components/Board";
 import PreGameModal from "@/components/PreGameModal";
 import StartTrialModal from "@/components/StartTrialModal";
@@ -98,7 +99,6 @@ export default function Game() {
 	}
 	return (
 		<div className="relative">
-			{" "}
 			{showStartTrialModal && (
 				<StartTrialModal
 					trialIndex={trialIndex}
@@ -119,10 +119,17 @@ export default function Game() {
 			{showEndTrialModal && (
 				<EndTrialModal
 					trialIndex={trialIndex}
-					setTrialIndex={setTrialIndex}
-					setTestComplete={setTestComplete}
-					setShowEndTrialModal={setShowEndTrialModal}
-					setShowStartTrialModal={setShowStartTrialModal}
+					onContinue={() => {
+						setShowEndTrialModal(false);
+						// Check if this was the last trial (index 3 for 4 trials)
+						if (trialIndex >= TRIAL_NAMES.length - 1) {
+							setTestComplete(true);
+						} else {
+							// Move to next trial and show start modal
+							setTrialIndex((prev) => prev + 1);
+							setShowStartTrialModal(true);
+						}
+					}}
 				/>
 			)}
 			{testComplete && <EndTestModal />}
