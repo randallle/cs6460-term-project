@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getRandomProblemOrder } from "@/lib/utils";
 import { fetchProblemById } from "@/lib/firebaseUtils";
 import Board from "@/components/Board";
@@ -40,6 +40,10 @@ export default function Game() {
 	const [trialComplete, setTrialComplete] = useState(true);
 	const [testComplete, setTestComplete] = useState(false);
 	const [selectedAnswer, setSelectedAnswer] = useState(-1);
+
+	// Audio states
+	const [playAudio, setPlayAudio] = useState(false);
+	const audioRef = useRef<HTMLAudioElement>(null);
 
 	// Initialize problem lineup on component mount
 	useEffect(() => {
@@ -94,15 +98,17 @@ export default function Game() {
 	}
 	return (
 		<div className="relative">
+			{" "}
 			{showStartTrialModal && (
 				<StartTrialModal
 					trialIndex={trialIndex}
-					setStartMusic={setStartMusic}
-					setShowStartTrialModal={setShowStartTrialModal}
-					setShowPreGameModal={setShowPreGameModal}
+					onStartTest={() => {
+						setStartMusic(true);
+						setShowStartTrialModal(false);
+						setShowPreGameModal(true);
+					}}
 				/>
 			)}
-
 			{showPreGameModal && (
 				<PreGameModal
 					trialIndex={trialIndex}
@@ -110,7 +116,6 @@ export default function Game() {
 					setShowPreGameModal={setShowPreGameModal}
 				/>
 			)}
-
 			{showEndTrialModal && (
 				<EndTrialModal
 					trialIndex={trialIndex}
@@ -120,9 +125,7 @@ export default function Game() {
 					setShowStartTrialModal={setShowStartTrialModal}
 				/>
 			)}
-
 			{testComplete && <EndTestModal />}
-
 			{/* Background content with conditional blur */}
 			<div className={startGame ? "" : "blur-3xl"}>
 				<div className="pt-5">
