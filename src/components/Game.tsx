@@ -124,7 +124,7 @@ export default function Game() {
 			{testComplete && <EndTestModal />}
 
 			{/* Background content with conditional blur */}
-			<div className={startGame ? "" : "blur-2xl"}>
+			<div className={startGame ? "" : "blur-3xl"}>
 				<div className="pt-5">
 					<CountdownTimer
 						initialTime={1}
