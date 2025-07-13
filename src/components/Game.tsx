@@ -143,7 +143,9 @@ export default function Game() {
 				/>
 				<div className="flex justify-center mt-4">
 					<Button
-						onClick={() => {}}
+						onClick={() => {
+							setCurrentProblemIndex((prev) => prev + 1);
+						}}
 						size="lg"
 						className="px-8 py-3"
 						disabled={selectedAnswer === -1}
