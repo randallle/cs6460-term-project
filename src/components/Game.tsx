@@ -102,7 +102,7 @@ export default function Game() {
 						onComplete={() => {
 							setStartGame(false);
 							setShowEndTrialModal(true);
-							// rerender board to reset everything
+							// TODO: rerender board to reset everything
 						}}
 						startCondition={startGame}
 					/>
