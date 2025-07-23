@@ -23,9 +23,7 @@ export default function EndTrialModal({
 		<Dialog open={true} modal={true}>
 			<DialogContent className="max-w-md">
 				<DialogHeader>
-					<DialogTitle className="text-xl font-semibold text-center">{`Trial ${
-						trialIndex + 1
-					} Complete!`}</DialogTitle>
+					<DialogTitle className="text-xl font-semibold text-center">{`Trial ${trialIndex} Complete!`}</DialogTitle>
 					<DialogDescription>
 						Click the button below to continue.
 					</DialogDescription>
