@@ -16,13 +16,7 @@ interface Problem {
 	answer: number;
 }
 
-interface BoardProps {
-	problem: Problem;
-	selectedAnswer: number;
-	setSelectedAnswer: (answer: number) => void;
-}
-
-export default function Board({ problem }: BoardProps) {
+export default function Board() {
 	// Problem states
 	const [lineUp, setLineUp] = useState<string[]>([]);
 	const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
