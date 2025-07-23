@@ -64,7 +64,17 @@ export default function Survey() {
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
 		console.log("Form data:", data);
-		// TODO: save data to session storage here
+		// Save each field to session storage
+		Object.entries(data).forEach(([key, value]) => {
+			if (value !== undefined) {
+				// Convert arrays and objects to JSON strings, keep primitives as strings
+				const stringValue =
+					typeof value === "object"
+						? JSON.stringify(value)
+						: String(value);
+				sessionStorage.setItem(key, stringValue);
+			}
+		});
 		router.push("/preview/game");
 	};
 
