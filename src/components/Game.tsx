@@ -108,7 +108,7 @@ export default function Game() {
 					/>
 				</div>
 
-				<Board />
+				<Board trialIndex={trialIndex} />
 			</div>
 		</div>
 	);

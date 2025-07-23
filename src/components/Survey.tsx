@@ -63,7 +63,6 @@ export default function Survey() {
 	};
 
 	const handleSubmit = (data: z.infer<typeof formSchema>) => {
-		console.log("Form data:", data);
 		// Save each field to session storage
 		Object.entries(data).forEach(([key, value]) => {
 			if (value !== undefined) {
