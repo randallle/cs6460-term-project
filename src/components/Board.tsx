@@ -29,14 +29,13 @@ export default function Board({ problem }: BoardProps) {
 	const [currentProblem, setCurrentProblem] = useState<Problem | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-
 	const [selectedAnswer, setSelectedAnswer] = useState(-1);
 
 	// Initialize problem lineup on component mount
 	useEffect(() => {
 		const lineup = getRandomProblemOrder();
-
 		setLineUp(lineup);
+		// TODO: SAVE LINEUP TO SESSION STORAGE
 	}, []);
 
 	useEffect(() => {
@@ -105,6 +104,7 @@ export default function Board({ problem }: BoardProps) {
 			<div className="flex justify-center mt-4">
 				<Button
 					onClick={() => {
+						// TODO: SAVE ANSWER TO SESSION STORAGE (APPEND)
 						setCurrentProblemIndex((prev) => prev + 1);
 					}}
 					size="lg"
