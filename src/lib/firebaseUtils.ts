@@ -100,3 +100,39 @@ async function fetchImagesFromStorage(folderPath: string) {
 	);
 	return urls;
 }
+
+async function submitResponses() {
+	const data: { [key: string]: string | null | Array<string> } = {
+		age: sessionStorage.getItem("age"),
+		gender: sessionStorage.getItem("gender"),
+		education: sessionStorage.getItem("education"),
+		rpm: sessionStorage.getItem("rpm"),
+		musicFrequency: sessionStorage.getItem("musicFrequency"),
+		musicWorkStudy: sessionStorage.getItem("musicWorkStudy"),
+		genres: sessionStorage.getItem("genres"),
+		musicalInstrument: sessionStorage.getItem("musicalInstrument"),
+		focus: sessionStorage.getItem("focus"),
+		stress: sessionStorage.getItem("stress"),
+	};
+
+	for (let i = 0; i < 4; i++) {
+		// ProblemLineUp
+		data[`trial${i}ProblemLineUp`] = JSON.parse(
+			sessionStorage.getItem(`trial${i}ProblemLineUp`) ?? "[]"
+		);
+
+		// AnswerKeyLineUp
+		const answerKeyString =
+			sessionStorage.getItem(`trial${i}AnswerKeyLineUp`) ?? "";
+		data[`trial${i}AnswerKeyLineUp`] = answerKeyString
+			? answerKeyString.split("")
+			: [];
+
+		// AnswerLineUp
+		const answerString =
+			sessionStorage.getItem(`trial${i}AnswerLineUp`) ?? "";
+		data[`trial${i}AnswerLineUp`] = answerString
+			? answerString.split("")
+			: [];
+	}
+}
