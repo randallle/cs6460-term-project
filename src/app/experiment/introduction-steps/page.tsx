@@ -2,6 +2,7 @@
 
 import IntroductionSteps from "@/components/IntroductionSteps";
 import { useRouter } from "next/navigation";
+import MobileWarningModal from "@/components/MobileWarningModal";
 
 export default function IntroductionStepsPage() {
 	const router = useRouter();
@@ -10,5 +11,10 @@ export default function IntroductionStepsPage() {
 		router.push("/experiment/survey");
 	};
 
-	return <IntroductionSteps onComplete={handleComplete} />;
+	return (
+		<div>
+			<MobileWarningModal />
+			<IntroductionSteps onComplete={handleComplete} />;
+		</div>
+	);
 }
