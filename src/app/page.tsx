@@ -34,7 +34,9 @@ export default async function Home() {
 						More information
 					</Button>
 					<Button asChild>
-						<Link href="./experiment/survey">Get started →</Link>
+						<Link href="./experiment/introduction-steps">
+							Get started →
+						</Link>
 					</Button>
 				</div>
 			</main>
