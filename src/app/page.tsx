@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "CS6460 Project: Home",
+	description:
+		"An experiment studying how music genre influences cognitive performance using Raven's Progressive Matrices",
+};
 
 export default async function Home() {
 	return (

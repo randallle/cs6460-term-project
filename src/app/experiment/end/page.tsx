@@ -1,3 +1,11 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "CS6460 Project: End",
+	description:
+		"An experiment studying how music genre influences cognitive performance using Raven's Progressive Matrices",
+};
+
 export default function ExperimentPage() {
 	return (
 		<div className="min-h-screen flex items-center justify-center">

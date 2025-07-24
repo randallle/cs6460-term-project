@@ -2,7 +2,7 @@
 
 import Survey from "@/components/Survey";
 
-export default function SurveyPreview() {
+export default function SurveyPage() {
 	return (
 		<main>
 			<Survey />
