@@ -33,7 +33,7 @@ export default function PreGameModal({
 							Preparation time remaining:
 						</p>
 						<CountdownTimer
-							initialTime={5}
+							initialTime={30}
 							onComplete={() => {
 								setStartGame(true);
 								setShowPreGameModal(false);

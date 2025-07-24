@@ -98,7 +98,7 @@ export default function Game() {
 			<div className={startGame ? "" : "blur-3xl"}>
 				<div className="pt-5">
 					<CountdownTimer
-						initialTime={5}
+						initialTime={60}
 						onComplete={() => {
 							setStartGame(false);
 							setShowEndTrialModal(true);
