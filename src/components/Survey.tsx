@@ -74,7 +74,8 @@ export default function Survey() {
 				sessionStorage.setItem(key, stringValue);
 			}
 		});
-		router.push("/experiment/game");
+		// Navigate with parameter to indicate coming from survey
+		router.push("/experiment/game?from=survey");
 	};
 
 	return (
