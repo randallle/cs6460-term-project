@@ -109,7 +109,7 @@ export async function submitResponses() {
 		rpm: sessionStorage.getItem("rpm"),
 		musicFrequency: sessionStorage.getItem("musicFrequency"),
 		musicWorkStudy: sessionStorage.getItem("musicWorkStudy"),
-		genres: sessionStorage.getItem("genres"),
+		genres: JSON.parse(sessionStorage.getItem("genres") ?? "[]"),
 		musicalInstrument: sessionStorage.getItem("musicalInstrument"),
 		focus: sessionStorage.getItem("focus"),
 		stress: sessionStorage.getItem("stress"),
