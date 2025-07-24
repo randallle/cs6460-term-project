@@ -37,7 +37,7 @@ export default function Board({ trialIndex }: BoardProps) {
 			`trial${trialIndex}ProblemLineUp`,
 			JSON.stringify(lineup)
 		);
-	}, []);
+	}, [trialIndex]);
 
 	useEffect(() => {
 		if (lineUp.length === 0) return;
@@ -50,15 +50,6 @@ export default function Board({ trialIndex }: BoardProps) {
 				const problemId = lineUp[currentProblemIndex];
 
 				const problem = await fetchProblemById(problemId);
-				let answerKeyLineUp =
-					sessionStorage.getItem(
-						`trial${trialIndex}AnswerKeyLineUp`
-					) || ""; // fallback to empty string
-				answerKeyLineUp += String(problem.answer);
-				sessionStorage.setItem(
-					`trial${trialIndex}AnswerKeyLineUp`,
-					answerKeyLineUp
-				);
 				setCurrentProblem(problem);
 				// Reset selected answer when loading a new problem
 				setSelectedAnswer(-1);
@@ -121,6 +112,16 @@ export default function Board({ trialIndex }: BoardProps) {
 						sessionStorage.setItem(
 							`trial${trialIndex}AnswerLineUp`,
 							answerLineUp
+						);
+
+						let answerKeyLineUp =
+							sessionStorage.getItem(
+								`trial${trialIndex}AnswerKeyLineUp`
+							) || ""; // fallback to empty string
+						answerKeyLineUp += String(currentProblem.answer);
+						sessionStorage.setItem(
+							`trial${trialIndex}AnswerKeyLineUp`,
+							answerKeyLineUp
 						);
 						setCurrentProblemIndex((prev) => prev + 1);
 					}}
