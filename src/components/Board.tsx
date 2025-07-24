@@ -33,7 +33,10 @@ export default function Board({ trialIndex }: BoardProps) {
 	useEffect(() => {
 		const lineup = getRandomProblemOrder();
 		setLineUp(lineup);
-		// TODO: SAVE LINEUP TO SESSION STORAGE
+		sessionStorage.setItem(
+			`trial${trialIndex}ProblemLineUp`,
+			JSON.stringify(lineup)
+		);
 	}, []);
 
 	useEffect(() => {
@@ -47,7 +50,15 @@ export default function Board({ trialIndex }: BoardProps) {
 				const problemId = lineUp[currentProblemIndex];
 
 				const problem = await fetchProblemById(problemId);
-
+				let answerKeyLineUp =
+					sessionStorage.getItem(
+						`trial${trialIndex}AnswerKeyLineUp`
+					) || ""; // fallback to empty string
+				answerKeyLineUp += String(problem.answer);
+				sessionStorage.setItem(
+					`trial${trialIndex}AnswerKeyLineUp`,
+					answerKeyLineUp
+				);
 				setCurrentProblem(problem);
 				// Reset selected answer when loading a new problem
 				setSelectedAnswer(-1);
@@ -102,7 +113,15 @@ export default function Board({ trialIndex }: BoardProps) {
 			<div className="flex justify-center mt-4">
 				<Button
 					onClick={() => {
-						// TODO: SAVE ANSWER TO SESSION STORAGE (APPEND)
+						let answerLineUp =
+							sessionStorage.getItem(
+								`trial${trialIndex}AnswerLineUp`
+							) || ""; // fallback to empty string
+						answerLineUp += selectedAnswer;
+						sessionStorage.setItem(
+							`trial${trialIndex}AnswerLineUp`,
+							answerLineUp
+						);
 						setCurrentProblemIndex((prev) => prev + 1);
 					}}
 					size="lg"
