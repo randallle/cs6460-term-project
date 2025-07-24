@@ -1,5 +1,5 @@
 import { db, storage } from "./firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 
 interface ProblemData {
@@ -101,7 +101,7 @@ async function fetchImagesFromStorage(folderPath: string) {
 	return urls;
 }
 
-async function submitResponses() {
+export async function submitResponses() {
 	const data: { [key: string]: string | null | Array<string> } = {
 		age: sessionStorage.getItem("age"),
 		gender: sessionStorage.getItem("gender"),
@@ -134,5 +134,16 @@ async function submitResponses() {
 		data[`trial${i}AnswerLineUp`] = answerString
 			? answerString.split("")
 			: [];
+	}
+
+	// timestamp
+	data.submittedAt = new Date().toISOString();
+
+	try {
+		// Write to Firestore
+		await addDoc(collection(db, "responses"), data);
+	} catch (error) {
+		console.error("Error writing to Firestore:", error);
+		alert("There was an error submitting your data. Please try again.");
 	}
 }
