@@ -82,6 +82,8 @@ export default function Board({ trialIndex }: BoardProps) {
 	if (!currentProblem) {
 		return <div>No problem available</div>;
 	}
+	console.log(currentProblem.answer);
+
 	return (
 		<main>
 			<h2 className="flex justify-end">Select an answer below</h2>
@@ -108,7 +110,7 @@ export default function Board({ trialIndex }: BoardProps) {
 							sessionStorage.getItem(
 								`trial${trialIndex}AnswerLineUp`
 							) || ""; // fallback to empty string
-						answerLineUp += selectedAnswer;
+						answerLineUp += selectedAnswer + 1;
 						sessionStorage.setItem(
 							`trial${trialIndex}AnswerLineUp`,
 							answerLineUp
