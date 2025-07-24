@@ -38,7 +38,7 @@ const steps = [
 	{
 		title: "Trials (continued)",
 		description:
-			"After the initial 30 seconds of music, you will have 60 seconds to complete as many RPM problems as you can.",
+			"After the initial 30 seconds of music, you will have 2 minutes to complete as many RPM problems as you can.",
 	},
 	{
 		title: "Testing your audio",
