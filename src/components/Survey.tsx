@@ -74,7 +74,7 @@ export default function Survey() {
 				sessionStorage.setItem(key, stringValue);
 			}
 		});
-		router.push("/preview/game");
+		router.push("/experiment/game");
 	};
 
 	return (
