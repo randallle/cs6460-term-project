@@ -7,9 +7,7 @@ export default function IntroductionStepsPreview() {
 	const router = useRouter();
 
 	const handleComplete = () => {
-		console.log("Introduction completed!");
-		// You can navigate to the next page or perform any action here
-		router.push("/preview/game");
+		router.push("/experiment/survey");
 	};
 
 	return <IntroductionSteps onComplete={handleComplete} />;
