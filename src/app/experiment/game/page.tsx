@@ -19,6 +19,20 @@ export default function GamePage() {
 		}
 	}, [searchParams, router]);
 
+	// Add beforeunload warning to prevent accidental refresh
+	useEffect(() => {
+		const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+			e.preventDefault();
+			e.returnValue = ""; // Modern browsers ignore custom messages and show default
+		};
+
+		window.addEventListener("beforeunload", handleBeforeUnload);
+
+		return () => {
+			window.removeEventListener("beforeunload", handleBeforeUnload);
+		};
+	}, []);
+
 	// Don't render the game if we're redirecting
 	const fromSurvey = searchParams.get("from") === "survey";
 	if (!fromSurvey) {
