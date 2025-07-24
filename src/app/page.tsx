@@ -25,7 +25,7 @@ export default async function Home() {
 						influences cognitive performance.
 					</p>
 					<p className="mb-8">
-						This study takes about 30 minutes to complete. Thank you
+						This study takes about 10 minutes to complete. Thank you
 						for contributing!
 					</p>
 				</div>
