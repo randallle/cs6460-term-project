@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Metadata } from "next";
+import MobileWarningModal from "@/components/MobileWarningModal";
 
 export const metadata: Metadata = {
 	title: "CS6460 Project: Home",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default async function Home() {
 	return (
 		<div>
+			<MobileWarningModal />
 			<nav className="mb-8">
 				<h1 className="font-black">
 					<Link href="/">CS 6460: Term Project</Link>

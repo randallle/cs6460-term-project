@@ -32,9 +32,9 @@ export default function MobileWarningModal() {
 						⚠️ Mobile Device Detected
 					</DialogTitle>
 					<DialogDescription className="text-center">
-						This experiment is not optimized for mobile devices.
-						For accurate results and the best experience, please
-						access this study from a desktop or laptop computer.
+						This experiment is not optimized for mobile devices. For
+						accurate results and the best experience, please access
+						this study from a desktop or laptop computer.
 					</DialogDescription>
 				</DialogHeader>
 				<DialogFooter className="sm:justify-center">
