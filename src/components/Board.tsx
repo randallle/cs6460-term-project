@@ -82,7 +82,6 @@ export default function Board({ trialIndex }: BoardProps) {
 	if (!currentProblem) {
 		return <div>No problem available</div>;
 	}
-	console.log(currentProblem.answer);
 
 	return (
 		<main>
