@@ -16,6 +16,7 @@ export default function EndTestModal() {
 	const router = useRouter();
 	const handleSubmit = async () => {
 		await submitResponses();
+		sessionStorage.clear();
 		router.push("/experiment/end");
 	};
 
