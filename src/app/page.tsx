@@ -30,11 +30,11 @@ export default async function Home() {
 					</p>
 				</div>
 				<div className="grid grid-cols-2 gap-16">
-					<Button asChild variant="secondary">
-						<Link href="/information">More information</Link>
+					<Button variant="secondary" disabled>
+						More information
 					</Button>
 					<Button asChild>
-						<Link href="./preview/survey">Get started →</Link>
+						<Link href="./experiment/survey">Get started →</Link>
 					</Button>
 				</div>
 			</main>
