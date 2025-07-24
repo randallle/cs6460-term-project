@@ -2,6 +2,6 @@
 
 import Game from "@/components/Game";
 
-export default function GamePreview() {
+export default function GamePage() {
 	return <Game></Game>;
 }

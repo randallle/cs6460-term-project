@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 		"An experiment studying how music genre influences cognitive performance using Raven's Progressive Matrices",
 };
 
-export default function ExperimentPage() {
+export default function EndExperimentPage() {
 	return (
 		<div className="min-h-screen flex items-center justify-center">
 			<div className="text-center">
