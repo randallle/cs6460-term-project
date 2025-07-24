@@ -3,9 +3,9 @@
 import Game from "@/components/Game";
 import MobileWarningModal from "@/components/MobileWarningModal";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
-export default function GamePage() {
+function GamePageContent() {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 
@@ -44,5 +44,13 @@ export default function GamePage() {
 			<MobileWarningModal />
 			<Game />
 		</div>
+	);
+}
+
+export default function GamePage() {
+	return (
+		<Suspense fallback={<div>Loading...</div>}>
+			<GamePageContent />
+		</Suspense>
 	);
 }
