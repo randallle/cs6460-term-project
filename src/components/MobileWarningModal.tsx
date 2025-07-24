@@ -15,13 +15,21 @@ import { isMobileDevice } from "@/lib/utils";
 export default function MobileWarningModal() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
+	const [isClient, setIsClient] = useState(false);
 
 	useEffect(() => {
+		// Set client flag to true after component mounts
+		setIsClient(true);
+		
+		// Only check for mobile after client-side hydration
 		const mobile = isMobileDevice();
 		setIsMobile(mobile);
 		setIsOpen(mobile);
 	}, []);
 
+	// Don't render anything until client-side hydration is complete
+	if (!isClient) return null;
+	
 	if (!isMobile) return null;
 
 	return (
