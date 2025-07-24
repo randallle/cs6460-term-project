@@ -47,3 +47,30 @@ export async function prepareTrial() {
 	const problemLineUp = getRandomProblemOrder();
 	return problemLineUp;
 }
+
+function isMobile(): boolean {
+	if (typeof window === "undefined") return false;
+
+	// Check user agent for mobile indicators
+	const userAgent = window.navigator.userAgent;
+	const mobileRegex =
+		/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+	return mobileRegex.test(userAgent);
+}
+
+function isMobileByScreen(): boolean {
+	if (typeof window === "undefined") return false;
+
+	// Check screen width (typical mobile breakpoint)
+	return window.innerWidth <= 768;
+}
+
+function isTouchDevice(): boolean {
+	if (typeof window === "undefined") return false;
+
+	return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+}
+
+export function isMobileDevice(): boolean {
+	return isMobile() || isMobileByScreen() || isTouchDevice();
+}
